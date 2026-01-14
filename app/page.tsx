@@ -1,66 +1,189 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { GreenButton } from "./ui/Buttons";
+import CloseButton from "./ui/CloseButton";
 
 export default function Home() {
+  const [showContact, setShowContact] = useState(false);
+  const [playVideo, setPlayVideo] = useState(false);
+
+  useEffect(() => {
+    if (window.location.hash === "#contact") {
+      setShowContact(true);
+    }
+  }, []);
+
+  const openContact = () => {
+    window.history.replaceState(null, "", "#contact");
+    setShowContact(true);
+  };
+
+  const closeContact = () => {
+    window.history.replaceState(null, "", window.location.pathname);
+    setShowContact(false);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-7xl flex-col items-center justify-between py-32 px-8 md:px-16 bg-white dark:bg-black sm:items-start">
-        
-        {/* Logo: left on mobile, centered on desktop */}
-        <div className="w-full flex justify-start sm:justify-center">
-          <Image
-            className="dark:invert"
-            src="/avokado.svg"
-            alt="avokado logo"
-            width={100}
-            height={20}
-            priority
-          />
-        </div>
+    <div className="w-full h-screen bg-zinc-50 dark:bg-black flex items-center justify-center overflow-hidden">
+      <main className="w-full h-full bg-white dark:bg-black">
+        <motion.div
+          animate={{ x: "0%" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="flex h-full"
+        >
 
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left w-full max-w-xl">
-          <h1 className="w-full text-4xl sm:text-5xl font-semibold leading-tight sm:leading-12 tracking-tight text-black dark:text-zinc-50">
-            Your Creative Partner for Digital Growth
-          </h1>
+          {/* ================= HERO SECTION ================= */}
+          <section className="w-screen flex-shrink-0 h-full flex items-center justify-center">
+            <div className="mx-auto flex w-full max-w-7xl h-full flex-col md:flex-row items-center justify-between gap-16 px-8 md:px-16">
 
-          <p className="w-full text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Avokado is a creative digital agency built for brands that want more
-            than just content — they want connection. We believe creativity
-            should feel{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              effortless, intuitive, and alive.
-            </a>
-          </p>
-        </div>
+              {/* LEFT CONTENT */}
+              <div className="flex flex-col w-full md:w-1/2 gap-6 justify-center items-start">
+                <Image
+                  src="/avokado.svg"
+                  alt="Avokado Logo"
+                  width={100}
+                  height={20}
+                  className="dark:invert"
+                  priority
+                />
 
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row w-full max-w-md">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-auto md:min-w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
+                <p className="text-lg text-zinc-600 dark:text-zinc-400 uppercase tracking-wide">
+                  LETS DO SOMETHING
+                </p>
 
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-auto md:min-w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+                {/* Animated Headline */}
+                <motion.h1
+                  className="text-6xl sm:text-8xl font-bold text-black dark:text-zinc-50 leading-tight flex"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.08 } },
+                  }}
+                >
+                  {"CREATIVE.".split("").map((letter, i) => (
+                    <motion.span
+                      key={i}
+                      variants={{
+                        hidden: { y: 50, opacity: 0 },
+                        visible: { y: 0, opacity: 1 },
+                      }}
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+
+                {/* Buttons */}
+                <div className="flex gap-4 mt-4">
+                  {!showContact && (
+                    <GreenButton onClick={openContact}>
+                      Contact Us
+                    </GreenButton>
+                  )}
+
+                  <Link
+                    href="/about"
+                    className="h-12 px-6 rounded-full border border-black/10 dark:border-white/15 flex items-center justify-center hover:bg-black/5 dark:hover:bg-zinc-800 transition flex items-center justify-center"
+                  >
+                    About Us
+                  </Link>
+                </div>
+              </div>
+
+              {/* RIGHT CONTENT */}
+              <div className="w-full md:w-1/2 relative h-[80vh] flex items-center justify-end">
+                <motion.div
+                  key={showContact ? "form" : playVideo ? "video" : "image"}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="relative w-full h-full flex items-center justify-end"
+                >
+                  {!showContact && !playVideo ? (
+                    <div
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={() => setPlayVideo(true)}
+                    >
+                      <Image
+                        src="/images/avokados.png"
+                        alt="Avokado Visual"
+                        fill
+                        className="object-contain rounded-[2rem]"
+                        priority
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-black/30 rounded-full flex items-center justify-center hover:bg-black/40 transition">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  ) : !showContact && playVideo ? (
+                    <video
+                      src="/videos/avokado-vid.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      controls
+                      className="w-full h-full object-contain rounded-[2rem]"
+                    />
+                  ) : (
+                    <>
+                      {/* CLOSE BUTTON */}
+                      <CloseButton
+                        onClick={closeContact}
+                        className="absolute -top-6 -right-6 w-14 h-14 text-xl font-bold"
+                      />
+
+                      {/* CONTACT FORM */}
+                      <form className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2rem] p-6 shadow-xl flex flex-col gap-4">
+                        <input
+                          type="text"
+                          placeholder="Name"
+                          className="rounded-xl border px-4 py-3 outline-none"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone Number"
+                          className="rounded-xl border px-4 py-3 outline-none"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          className="rounded-xl border px-4 py-3 outline-none"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Subject"
+                          className="rounded-xl border px-4 py-3 outline-none"
+                        />
+                        <textarea
+                          placeholder="Message"
+                          rows={4}
+                          className="rounded-xl border px-4 py-3 outline-none resize-none"
+                        />
+                        <button
+                          type="submit"
+                          className="mt-2 rounded-full bg-black text-white py-3 hover:bg-zinc-800 transition"
+                        >
+                          Send Message
+                        </button>
+                      </form>
+                    </>
+                  )}
+                </motion.div>
+              </div>
+
+            </div>
+          </section>
+
+        </motion.div>
       </main>
     </div>
   );
