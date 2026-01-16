@@ -38,11 +38,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </span>
             {showServices && (
               <div className="absolute right-0 mt-0 pt-2 w-[520px]">
-                <div className="border border-black/10 dark:border-white/15 bg-white/90 dark:bg-zinc-900/90 shadow-xl p-6">
+                <div className="border border-black/10 dark:border-white/15 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-xl p-6">
                   <div className="grid grid-cols-2 gap-6 text-sm">
                     <div>
-                      <p className="font-semibold mb-2">Web Development</p>
-                      <ul className="space-y-1 text-zinc-600 dark:text-zinc-400">
+                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Web Development</p>
+                      <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Custom Development</li>
                         <li>Shopify</li>
                         <li>Webflow</li>
@@ -52,27 +52,37 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2">Design</p>
-                      <ul className="space-y-1 text-zinc-600 dark:text-zinc-400">
+                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Design</p>
+                      <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Branding</li>
                         <li>UI / UX Design</li>
                         <li>Web and App Design</li>
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2">Photography</p>
-                      <ul className="space-y-1 text-zinc-600 dark:text-zinc-400">
+                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Photography</p>
+                      <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Product Photography</li>
                         <li>Brand Shoots</li>
                         <li>Campaign Shoots</li>
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2">Videography</p>
-                      <ul className="space-y-1 text-zinc-600 dark:text-zinc-400">
+                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Videography</p>
+                      <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Brand Films</li>
                         <li>Social Media Content</li>
                         <li>Commercial Videos</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Social Media</p>
+                      <ul className="space-y-1 text-zinc-600 dark:text-white">
+                        <li>Social Media Strategy</li>
+                        <li>Content Creation</li>
+                        <li>Campaign Management</li>
+                        <li>Influencer Collaboration</li>
+                        <li>Analytics & Reporting</li>
                       </ul>
                     </div>
                   </div>
@@ -98,7 +108,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           )}
           <ThemeToggle />
         </div>
-        {children}
+        <main className="w-full h-full border-b-2 border-black dark:border-white">
+          {children}
+        </main>
       </body>
     </html>
   );
