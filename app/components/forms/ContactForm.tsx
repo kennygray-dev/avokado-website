@@ -15,8 +15,11 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="relative w-full h-full flex items-center justify-center"
     >
-      <CloseButton onClick={onClose} className="absolute top-6 right-6 w-14 h-14 text-xl font-bold" />
-      <div className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6">
+      <CloseButton
+        onClick={onClose}
+        className="absolute -top-6 -right-6 w-14 h-14 text-xl font-bold"
+      />
+      <div className="w-full max-w-md md:max-w-lg h-auto bg-white dark:bg-zinc-900 rounded-[2.5rem] p-6 md:p-8 shadow-xl flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <input
             type="text"

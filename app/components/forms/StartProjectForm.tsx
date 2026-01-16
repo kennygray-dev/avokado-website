@@ -44,7 +44,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
@@ -101,20 +101,11 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
           
-          {/* Back Button */}
-          <button
-            onClick={() => setStep(0)}
-            className="absolute -bottom-16 -left-2 h-12 w-12 rounded-full bg-[#ccf17b] flex items-center justify-center hover:bg-[#b8e66c] transition"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
           <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium">
             Hi, {name}, what services would you need?
           </label>
@@ -151,6 +142,14 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
               Next
             </motion.button>
           )}
+          <button
+            onClick={() => setStep(step - 1)}
+            className="absolute -bottom-6 -left-6 w-14 h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
         </motion.div>
       )}
 
@@ -159,20 +158,11 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
           
-          {/* Back Button */}
-          <button
-            onClick={() => setStep(1)}
-            className="absolute -bottom-16 -left-2 h-12 w-12 rounded-full bg-[#ccf17b] flex items-center justify-center hover:bg-[#b8e66c] transition"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
 
           <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium">
             Review Your Message
@@ -209,6 +199,14 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
             className="rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold"
           >
             Submit
+          </button>
+          <button
+            onClick={() => setStep(step - 1)}
+            className="absolute -bottom-6 -left-6 w-14 h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
         </motion.div>
       )}
