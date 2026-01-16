@@ -109,7 +109,7 @@ export default function AboutPage() {
 
   return (
     <div className="w-full min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-300 flex flex-col items-center justify-start overflow-auto">
-      <div className="fixed top-15 left-22 z-50">
+      <div className="fixed top-3 left-22 z-50">
         <BackButton />
       </div>
 

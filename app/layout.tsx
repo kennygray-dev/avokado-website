@@ -2,6 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import "./globals.css";
 import ThemeToggle from "./ui/ThemeToggle";
 
@@ -37,11 +38,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               OUR SERVICES
             </span>
             {showServices && (
-              <div className="absolute right-0 mt-0 pt-2 w-[520px]">
-                <div className="border border-black/10 dark:border-white/15 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-xl p-6">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="absolute right-0 mt-0 pt-2 w-[520px]"
+              >
+                <div className="border border-black/10 dark:border-white/15 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md shadow-xl p-6">
                   <div className="grid grid-cols-2 gap-6 text-sm">
                     <div>
-                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Web Development</p>
+                      <p className="font-semibold mb-2 border-b border-[#8FB850] dark:border-[#CEF17B] pb-1 inline-block">Web Development</p>
                       <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Custom Development</li>
                         <li>Shopify</li>
@@ -52,7 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Design</p>
+                      <p className="font-semibold mb-2 border-b border-[#8FB850] dark:border-[#CEF17B] pb-1 inline-block">Design</p>
                       <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Branding</li>
                         <li>UI / UX Design</li>
@@ -60,7 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Photography</p>
+                      <p className="font-semibold mb-2 border-b border-[#8FB850] dark:border-[#CEF17B] pb-1 inline-block">Photography</p>
                       <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Product Photography</li>
                         <li>Brand Shoots</li>
@@ -68,7 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Videography</p>
+                      <p className="font-semibold mb-2 border-b border-[#8FB850] dark:border-[#CEF17B] pb-1 inline-block">Videography</p>
                       <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Brand Films</li>
                         <li>Social Media Content</li>
@@ -76,7 +83,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                       </ul>
                     </div>
                     <div>
-                      <p className="font-semibold mb-2 border-b border-black dark:border-white pb-1 inline-block">Social Media</p>
+                      <p className="font-semibold mb-2 border-b border-[#8FB850] dark:border-[#CEF17B] pb-1 inline-block">Social Media</p>
                       <ul className="space-y-1 text-zinc-600 dark:text-white">
                         <li>Social Media Strategy</li>
                         <li>Content Creation</li>
@@ -87,7 +94,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
           {pathname !== "/" && (
