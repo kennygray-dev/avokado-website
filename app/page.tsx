@@ -217,8 +217,11 @@ export default function Home() {
                         fill
                         className="object-cover"
                         priority
+                        quality={70}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        placeholder="blur"
+                        blurDataURL="/images/avokados-blur.png"
                       />
-
                       <video
                         ref={videoRef}
                         src="/videos/avokado-vid.mp4"

@@ -23,7 +23,7 @@ body {
 
 /* Manual override classes */
 body.light-mode {
-  --background: #ffffff;
+  --background: #f4f3f3;
   --foreground: #171717;
 }
 
