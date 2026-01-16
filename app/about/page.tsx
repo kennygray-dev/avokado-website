@@ -62,6 +62,14 @@ const AboutHero = () => {
                 </svg>
               </a>
             </div>
+            <div className="mt-4">
+              <button
+                onClick={() => window.location.href = '/#project'}
+                className="h-12 md:h-16 w-36 md:w-40 bg-[#ccf17b] text-black font-bold rounded-full hover:bg-[#b8e66c] transition"
+              >
+                Start a Project
+              </button>
+            </div>
           </div>
 
           {/* Right: Services Animation */}

@@ -103,17 +103,11 @@ export default function Home() {
                   {!showContact && (
                     <button
                       onClick={openContact}
-                      className="h-10 md:h-12 w-28 md:w-40 text-sm md:text-base rounded-full bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-300 transition"
+                      className="h-10 md:h-12 px-4 md:px-6 text-sm md:text-base rounded-full border border-black/10 dark:border-white/15 flex items-center justify-center hover:bg-black/5 dark:hover:bg-zinc-800 transition"
                     >
                       Contact Us
                     </button>
                   )}
-                  <Link
-                    href="/about"
-                    className="h-10 md:h-12 px-4 md:px-6 text-sm md:text-base rounded-full border border-black/10 dark:border-white/15 flex items-center justify-center hover:bg-black/5 dark:hover:bg-zinc-800 transition"
-                  >
-                    About Us
-                  </Link>
                 </div>
                 <div className="flex gap-3 md:gap-4 mt-3 md:mt-6 text-zinc-600 dark:text-zinc-400">
                   <a
