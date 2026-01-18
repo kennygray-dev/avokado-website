@@ -53,7 +53,7 @@ export default function Home() {
           className="flex h-full"
         >
           <section className="w-screen flex-shrink-0 min-h-screen md:h-full flex items-center justify-center py-8 md:py-0">
-            <div className="mx-auto flex w-full max-w-7xl h-full flex-col md:flex-row items-center md:justify-between gap-6 md:gap-16 px-4 md:px-8 lg:px-16">
+            <div className="mx-auto flex w-full max-w-[80rem] mx-auto h-full flex-col md:flex-row items-center md:justify-between gap-6 md:gap-16 px-4 md:px-8 lg:px-16">
               {/* LEFT CONTENT */}
               <div className="flex flex-col w-full md:w-1/2 gap-3 md:gap-6 justify-start md:justify-center items-start pt-4 md:pt-0">
                 <button 

@@ -21,43 +21,66 @@ const AboutHero = () => {
   return (
     <div className="w-full">
       {/* Top border line */}
-      <div className="w-full h-screen flex justify-center items-center px-8 md:px-16">
-        <div className="w-full max-w-7xl h-full flex flex-col md:flex-row items-stretch justify-between gap-8 p-6 rounded-[2rem]">
+      <div className="w-full min-h-screen flex justify-center items-center px-2 py-24 md:px-16">
+        <div className="w-full h-full max-w-[80rem] mx-auto flex flex-col md:flex-row items-center justify-start md:justify-between gap-4 md:gap-8 p-4 md:p-6 rounded-[2rem]">
           {/* Left: Text Content */}
-          <div className="w-full md:w-1/2 h-full flex flex-col justify-center gap-6">
-            <motion.h3
-              className="text-5xl md:text-7xl font-bold"
+          <div className="w-full md:w-1/2 h-full flex flex-col justify-center gap-6 relative">
+            <motion.h1
+              className="text-5xl md:text-5xl font-bold relative inline-block"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Who We Are
-            </motion.h3>
+              <span className="relative inline-block text-black dark:text-zinc-100">
+                <span className="relative z-20">Avokado</span>
+                {/* Green scribble line */}
+                <div className="relative z-10">
+                  <svg
+                    className="absolute -bottom-3 left-0 w-full h-6 opacity-60"
+                    viewBox="0 0 200 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ filter: 'drop-shadow(0 0 2px rgba(156, 183, 133, 1))' }}
+                  >
+                    <path
+                      d="M0 10 C20 15, 40 5, 60 10 S100 15, 120 10 S160 5, 180 10 S200 15, 220 10"
+                      stroke="#CEF17B"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      strokeDasharray="5 5"
+                    />
+                  </svg>
+                </div>
+              </span>
+              <span className="text-zinc-500 dark:text-zinc-400"> built for brands that want more than just content — they want connection.</span>
+            </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-[#084734] dark:text-[#ccf17b]"
+              className="text-base md:text-lg text-zinc-700 dark:text-zinc-100 leading-loose md:leading-loose"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Avokado is a creative digital agency built for brands that want more than just content — they want connection. We believe creativity should feel effortless, intuitive, and alive.
+              We believe creativity should feel effortless, intuitive, and alive.
             </motion.p>
-            <div className="flex gap-6 mt-6">
+            <div className="flex gap-4 mt-6">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-10 h-10">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.343 3.608 1.318.975.975 1.256 2.242 1.318 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.343 2.633-1.318 3.608-.975.975-2.242 1.256-3.608 1.318-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.343-3.608-1.318-.975-.975-1.256-2.242-1.318-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.343-2.633 1.318-3.608.975-.975 2.242-1.256 3.608-1.318C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.773.13 4.602.452 3.635 1.419 2.668 2.386 2.346 3.557 2.288 4.836.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.058 1.279.38 2.45 1.347 3.417.967.967 2.138 1.289 3.417 1.347C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.279-.058 2.45-.38 3.417-1.347.967-.967 1.289-2.138 1.347-3.417C23.986 15.668 24 15.259 24 12s-.014-3.668-.072-4.948c-.058-1.279-.38-2.45-1.347-3.417-.967-.967-2.138-1.289-3.417-1.347C15.668.014 15.259 0 12 0z"/>
-                  <circle cx="12" cy="12" r="3.5"/>
-                  <circle cx="18.406" cy="5.594" r="1.44"/>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="w-8 h-8">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37a4 4 0 1 1-4.73-4.73 4 4 0 0 1 4.73 4.73z"/>
+                  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
                 </svg>
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-10 h-10">
-                  <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S.02 4.88.02 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 24h4V7h-4v17zM8.5 7h3.657v2.59h.051c.509-.965 1.754-1.983 3.612-1.983 3.863 0 4.577 2.54 4.577 5.845V24h-4v-5.845c0-1.394-.025-3.19-1.945-3.19-1.947 0-2.244 1.52-2.244 3.09V24h-4V7z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.039-1.852-3.039-1.853 0-2.136 1.445-2.136 2.939v5.669h-3.554V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.369-1.852 3.602 0 4.268 2.368 4.268 5.456v6.287zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
                 </svg>
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white hover:text-zinc-700 dark:hover:text-zinc-300 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-10 h-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
                   <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
                 </svg>
               </a>
@@ -80,7 +103,7 @@ const AboutHero = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="w-full md:w-1/2 h-full flex justify-center items-center"
             >
-              <div className="w-full max-w-md  p-2 rounded-[2rem]">
+              <div className="w-full max-w-md p-0 rounded-[2rem]">
                 <Lottie
                   animationData={isDark ? servicesAnimationData : servicesAnimationDark}
                   loop={true}
@@ -98,7 +121,7 @@ const AboutHero = () => {
 
 // Services Section
 const ServiceSection = () => (
-  <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 px-8 md:px-16 py-12">
+  <div className="w-full max-w-[90rem] mx-auto flex flex-col gap-6 px-4 md:px-16 py-12">
     {/* Your existing motion divs for each service go here */}
   </div>
 );
@@ -112,16 +135,12 @@ export default function AboutPage() {
       <div className="fixed top-3 left-22 z-50">
         <BackButton />
       </div>
-
       <AboutHero />
-
-      <ServiceSection />
-
       {/* Brand Story Section */}
-      <section className="w-full py-0 px-8 md:px-16">
-        <div className="w-full max-w-7xl mx-auto p-8 md:p-12 flex flex-col gap-6 rounded-[1rem]">
+      <section className="w-full">
+        <div className="w-full max-w-[80rem] mx-auto p-4 md:p-8 flex flex-col gap-4 md:gap-6 rounded-[1rem]">
           <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white">Brand Story</h2>
-          <p className="text-lg md:text-xl text-zinc-800 dark:text-zinc-200 leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-700 dark:text-zinc-200 leading-loose md:leading-loose">
             Avokado was born from a simple idea — creativity should feel fresh, intentional, and unforgettable.<br />
             Just like its name, Avokado represents something wholesome, rich, and naturally appealing. We take the familiar (brands and businesses), add flavor (creativity), and serve it in a way that feels new yet effortless.<br />
             In a world where attention is the new currency, Avokado helps brands stand out with visuals that speak, stories that connect, and digital experiences that actually convert. We blend strategy with aesthetics, artistry with technology, and professionalism with personality.<br />
@@ -129,6 +148,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+      <ServiceSection />
     </div>
   );
 }
