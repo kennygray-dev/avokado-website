@@ -44,7 +44,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
@@ -101,7 +101,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
@@ -158,7 +158,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
           <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />

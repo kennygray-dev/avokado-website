@@ -37,7 +37,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 60 }}
             transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.6 }}
-            className="fixed bottom-4 right-4 z-[60] w-[60vw] h-[85vh] rounded-3xl bg-white/80 dark:bg-black/80 dark:border dark:border-zinc-700 backdrop-blur-xl shadow-2xl p-8 flex flex-col"
+            className="fixed bottom-4 right-4 z-[60] w-[60vw] h-[85vh] rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-black/10 dark:border-white/15 backdrop-blur-md shadow-xl p-8 flex flex-col"
           >
             {/* Close button */}
             <motion.button
