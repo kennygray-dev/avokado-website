@@ -90,7 +90,7 @@ export default function Home() {
                 </button>
               </motion.div>
               <motion.h1
-                className="font-aonik text-[22vw] sm:text-[20vw] md:text-[18vw] leading-[0.9] font-bold tracking-tight flex justify-center mix-blend-difference text-white"
+                className="font-aonik text-[22vw] sm:text-[20vw] md:text-[18vw] leading-[0.9] font-bold tracking-tight flex justify-center mix-blend-difference text-white [text-shadow:_0_0_40px_rgb(255_255_255_/_40%)]"
                 initial="hidden"
                 animate="visible"
                 variants={{
