@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen h-screen bg-zinc-50 dark:bg-black transition-colors duration-300 overflow-x-hidden relative">
+    <div className="w-full min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-300 overflow-x-hidden relative">
       <main className="w-full h-full relative">
         <div className={`transition-all duration-300 ${showProjectForm || showContact ? "blur-lg" : ""}`}>
           {/* Fullscreen background image with overlay */}
@@ -63,7 +63,7 @@ export default function Home() {
           </div>
 
           {/* Overlay content centered */}
-          <div className="relative w-full h-screen flex items-center justify-center">
+          <div className="relative w-full min-h-screen flex items-center justify-center py-24">
             <motion.div
               className="relative z-10 flex flex-col items-center justify-center text-center px-4 md:px-16 gap-4 sm:gap-6 max-w-full mx-auto"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -90,7 +90,7 @@ export default function Home() {
                 </button>
               </motion.div>
               <motion.h1
-                className="font-aonik text-[22vw] sm:text-[20vw] md:text-[18vw] leading-[0.9] font-bold tracking-tight flex justify-center mix-blend-difference text-white [text-shadow:_0_0_40px_rgb(255_255_255_/_40%)]"
+                className="font-aonik text-[20vw] sm:text-[18vw] md:text-[16vw] leading-[0.92] font-bold tracking-tight flex justify-center mix-blend-difference text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)]"
                 initial="hidden"
                 animate="visible"
                 variants={{
