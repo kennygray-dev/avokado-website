@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import CloseButton from "../../ui/CloseButton";
+import CloseButton from "../ui/CloseButton";
 
 interface StartProjectFormProps {
   onClose: () => void;
@@ -32,12 +32,13 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative w-full h-full flex items-center justify-center"
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative w-full h-full flex items-center justify-center"
+      >
 
       {/* Step 0: Name & Email */}
       {step === 0 && (
@@ -210,6 +211,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
           </button>
         </motion.div>
       )}
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

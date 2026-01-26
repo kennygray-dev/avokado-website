@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import BackButton from "../ui/BackButton";
+import BackButton from "../components/ui/BackButton";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Lottie from "lottie-react";

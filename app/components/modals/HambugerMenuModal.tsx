@@ -1,15 +1,8 @@
 "use client";
 
-/* ======================================================
-   Imports
-====================================================== */
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-/* ======================================================
-   HamburgerMenuModal Component
-====================================================== */
 interface HamburgerMenuModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -25,7 +18,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
           {/* Backdrop */}
           <motion.div
             onClick={onClose}
-            className="fixed inset-0 z-[50] bg-black/40 backdrop-blur-lg"
+            className="fixed inset-0 z-[50] bg-white/30 backdrop-blur-3xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -37,13 +30,13 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 60 }}
             transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.6 }}
-            className="fixed bottom-4 right-4 z-[60] w-[60vw] h-[85vh] rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-black/10 dark:border-white/15 backdrop-blur-md shadow-xl p-8 flex flex-col"
+            className="fixed bottom-4 right-4 z-[60] w-[60vw] h-[85vh] rounded-3xl bg-white/60 backdrop-blur-3xl border border-white/20 shadow-xl p-8 flex flex-col"
           >
             {/* Close button */}
             <motion.button
               onClick={onClose}
               aria-label="Close menu"
-              className="absolute top-6 right-6 w-16 h-16 flex items-center justify-center rounded-full border border-zinc-400 dark:border-zinc-600 text-6xl font-thin transition"
+              className="absolute top-6 right-6 w-16 h-16 flex items-center justify-center rounded-full border border-white/30 text-6xl font-thin transition"
               whileHover={{ scale: 1.1, rotate: 15 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -52,7 +45,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
 
             {/* Menu Links */}
             <motion.div
-              className="mt-12 flex flex-col gap-10 font-light"
+              className="mt-12 flex flex-col gap-10 font-light text-black"
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -68,7 +61,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
             >
               {/* Our Services */}
               <motion.span
-                className="relative text-8xl cursor-pointer font-light text-zinc-700 dark:text-white"
+                className="relative text-8xl cursor-pointer font-light"
                 variants={{
                   hidden: { opacity: 0, y: 40 },
                   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
@@ -82,7 +75,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
                 <motion.a
                   href="/about"
                   onClick={onClose}
-                  className="relative text-8xl cursor-pointer font-light text-zinc-700 dark:text-white"
+                  className="relative text-8xl cursor-pointer font-light"
                   variants={{
                     hidden: { opacity: 0, y: 40 },
                     visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
@@ -95,7 +88,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
                 <motion.a
                   href="/#contact"
                   onClick={onClose}
-                  className="relative text-8xl cursor-pointer font-light text-zinc-700 dark:text-white"
+                  className="relative text-8xl cursor-pointer font-light"
                   variants={{
                     hidden: { opacity: 0, y: 40 },
                     visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
@@ -107,7 +100,7 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
             </motion.div>
 
             {/* Footer */}
-            <div className="mt-auto text-sm opacity-50">© Avokado</div>
+            <div className="mt-auto text-sm opacity-50 text-black">© Avokado</div>
           </motion.div>
         </>
       )}
