@@ -45,17 +45,17 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
+          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
           <div className="flex flex-col gap-2">
-            <label className="text-zinc-700 dark:text-zinc-300">What's your name?</label>
+            <label className="text-zinc-700 dark:text-zinc-300 text-sm sm:text-base">What's your name?</label>
             <div className="flex gap-2 items-center">
               <input
                 type="text"
                 placeholder="Your Name"
-                className="flex-1 rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-6 py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white"
+                className="flex-1 rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 onKeyDown={e => e.key === "Enter" && name.trim() && setShowEmail(true)}
@@ -75,11 +75,11 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
 
           {showEmail && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-2">
-              <label className="text-zinc-700 dark:text-zinc-300">Email</label>
+              <label className="text-zinc-700 dark:text-zinc-300 text-sm sm:text-base">Email</label>
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-full rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-6 py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white"
+                className="w-full rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 onKeyDown={e => e.key === "Enter" && isValidEmail(email) && setStep(1)}
@@ -87,7 +87,7 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
               {isValidEmail(email) && (
                 <button
                   onClick={() => setStep(1)}
-                  className="mt-4 w-full rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold"
+                  className="mt-4 w-full rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
                 >
                   Next
                 </button>
@@ -102,12 +102,12 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
+          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
           
-          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium">
+          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium text-sm sm:text-base">
             Hi, {name}, what services would you need?
           </label>
           <div className="flex flex-wrap gap-3">
@@ -116,13 +116,13 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
                 key={service}
                 onClick={() => toggleService(service)}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-4 rounded-full border-2 transition-all duration-300 ${
+                className={`px-6 py-3 sm:py-4 rounded-full border-2 transition-all duration-300 ${
                   services.includes(service)
                     ? "bg-[#ccf17b] border-[#ccf17b] shadow-lg"
                     : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-[#ccf17b]/50"
                 }`}
               >
-                <span className={`text-sm font-medium transition-colors whitespace-nowrap ${
+                <span className={`text-sm sm:text-base font-medium transition-colors whitespace-nowrap ${
                   services.includes(service) 
                     ? "text-black" 
                     : "text-zinc-700 dark:text-zinc-200"
@@ -138,14 +138,14 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               onClick={() => setStep(2)}
-              className="mt-2 rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold"
+              className="mt-2 rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
             >
               Next
             </motion.button>
           )}
           <button
             onClick={() => setStep(step - 1)}
-            className="absolute -bottom-6 -left-6 w-14 h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
+            className="absolute -bottom-6 -left-6 w-12 h-12 sm:w-14 sm:h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -159,18 +159,18 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-[2.5rem] p-8 shadow-xl flex flex-col gap-6"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
         >
           {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-16 -right-2 w-14 h-14 text-xl font-bold" />
+          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
           
 
-          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium">
+          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium text-sm sm:text-base">
             Review Your Message
           </label>
 
           {/* Message Template */}
-          <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base">
             <p className="mb-4">Hi Avokado! 👋</p>
             <p className="mb-4">
               My name is <span className="font-semibold text-black dark:text-white cursor-pointer hover:text-[#ccf17b] transition" onClick={() => setStep(0)}>{name}</span> and I would like to work with you on {formatServices()}.
@@ -197,13 +197,13 @@ export default function StartProjectForm({ onClose }: StartProjectFormProps) {
               // Here you would send the data to your backend
               onClose();
             }}
-            className="rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold"
+            className="rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
           >
             Submit
           </button>
           <button
             onClick={() => setStep(step - 1)}
-            className="absolute -bottom-6 -left-6 w-14 h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
+            className="absolute -bottom-6 -left-6 w-12 h-12 sm:w-14 sm:h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

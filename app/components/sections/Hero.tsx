@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="w-full min-h-screen relative flex flex-col items-center justify-center overflow-hidden p-4">
+    <section className="w-full h-[90vh] md:min-h-screen relative flex flex-col items-center justify-center overflow-hidden p-4">
       {/* Background Image */}
       <Image
         src="/images/hero.png"
@@ -22,10 +22,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center">
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-full overflow-hidden px-4">
         {/* Subtitle above AVOKADO */}
         <p
-          className="text-center text-white mb-12"
+          className="text-center text-white mb-12 max-w-full"
           style={{
             fontFamily: "'Neue Montreal', sans-serif",
             fontWeight: 400,
@@ -33,6 +33,7 @@ export default function Hero() {
             fontSize: "18px",
             lineHeight: "100%",
             letterSpacing: "0%",
+            wordWrap: "break-word",
           }}
         >
           Every brand has a story.<br />
@@ -41,14 +42,15 @@ export default function Hero() {
 
         {/* Animated AVOKADO Text */}
         <motion.h1
-          className="mt-4 text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)]"
+          className="mt-4 text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)] flex flex-wrap justify-center text-center"
           style={{
             fontFamily: "'Neue Montreal', sans-serif",
             fontWeight: 800,
             fontStyle: "bold",
-            fontSize: "260px",
+            fontSize: "clamp(120px, 20vw, 260px)",
             lineHeight: "100%",
             letterSpacing: "0%",
+            overflow: "visible",
           }}
           initial="hidden"
           animate="visible"
@@ -57,13 +59,31 @@ export default function Hero() {
             visible: { transition: { staggerChildren: 0.08 } },
           }}
         >
-          {"AVOKADO".split("").map((letter, i) => (
+          {/* "AVO" on top line always */}
+          {"AVO".split("").map((letter, i) => (
             <motion.span
-              key={i}
+              key={`avo-${i}`}
               variants={{
                 hidden: { y: 50, opacity: 0 },
                 visible: { y: 0, opacity: 1 },
               }}
+              style={{ display: "inline-block" }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+          {/* Line break only on mobile */}
+          <br className="block md:hidden" />
+          {/* "KADO" white on desktop, gray on mobile */}
+          {"KADO".split("").map((letter, i) => (
+            <motion.span
+              key={`kado-${i}`}
+              variants={{
+                hidden: { y: 50, opacity: 0 },
+                visible: { y: 0, opacity: 1 },
+              }}
+              className="text-gray-300 md:text-white"
+              style={{ display: "inline-block" }}
             >
               {letter}
             </motion.span>
