@@ -20,12 +20,27 @@ export default function WhoWeAre() {
       ))}
 
       {/* Spline 3D plane */}
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none w-[150%] max-w-[800px] h-[150%]">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none w-[150%] max-w-[800px] h-[150%]">
         <Spline
           scene="https://prod.spline.design/1xCN1trQCEVcfGsw/scene.splinecode"
           className="w-full h-full"
         />
       </div>
+
+      {/* Vertical stripes centered vertically with fixed height */}
+      {lines.map((_, i) => (
+        <div
+          key={`stripe-${i}`}
+          className="absolute inset-y-0 flex items-center pointer-events-none"
+          style={{ left: `${(i / (numLines - 1)) * 100}%` }}
+        >
+          <div
+            className={`w-px h-[70%] bg-gradient-to-b from-transparent to-transparent ${
+              i === Math.floor(numLines / 2) ? "via-gray-400/20" : "via-gray-400/50"
+            }`}
+          />
+        </div>
+      ))}
     </section>
   );
 }

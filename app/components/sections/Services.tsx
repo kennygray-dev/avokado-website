@@ -13,7 +13,7 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="w-full overflow-hidden py-16 sm:py-20">
+    <div className="w-full overflow-hidden py-10 sm:py-12">
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-100%"] }} // Moves from right to left
