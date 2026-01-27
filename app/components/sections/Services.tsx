@@ -11,39 +11,47 @@ const services = [
   "Social Media",
 ];
 
-// Create alternating array: logo, text, logo, text...
-const createMarqueeItems = () => {
-  const items: Array<{ type: "logo" | "text"; content?: string }> = [];
-  services.forEach((service) => {
-    items.push({ type: "logo" });
-    items.push({ type: "text", content: service });
-  });
-  return [...items, ...items]; // duplicate for seamless loop
-};
-
 export default function Services() {
-  const marqueeItems = createMarqueeItems();
-
   return (
-    <div className="w-full overflow-hidden py-6 relative">
+    <div className="w-full overflow-hidden py-10">
       <motion.div
         className="flex"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        animate={{ x: ["0%", "-100%"] }} // Moves from right to left
+        transition={{
+          repeat: Infinity,
+          duration: 30,
+          ease: "linear",
+        }}
       >
-        {marqueeItems.concat(marqueeItems).map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-center min-w-[150px] sm:min-w-[200px]"
-            style={{ color: "#8D8D8D" }}
-          >
-            {item.type === "logo" ? (
-              <AvokadoLogo className="w-10 h-10 sm:w-12 sm:h-12" />
-            ) : (
-              <span className="font-aonik text-base sm:text-lg">{item.content}</span>
-            )}
-          </div>
-        ))}
+        {/* First set */}
+        <div className="flex">
+          {services.map((service, index) => (
+            <div key={`set1-${index}`} className="flex items-center px-16">
+              <AvokadoLogo 
+                className="w-12 h-12 mx-6" 
+                filled={index === 0} // First logo (before "Branding") is filled
+              />
+              <span className="font-aonik text-2xl text-[#8D8D8D] whitespace-nowrap mx-6">
+                {service}
+              </span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Duplicate set for seamless loop */}
+        <div className="flex">
+          {services.map((service, index) => (
+            <div key={`set2-${index}`} className="flex items-center px-16">
+              <AvokadoLogo 
+                className="w-12 h-12 mx-6" 
+                filled={false} // Only first instance should be filled
+              />
+              <span className="font-aonik text-2xl text-[#8D8D8D] whitespace-nowrap mx-6">
+                {service}
+              </span>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </div>
   );

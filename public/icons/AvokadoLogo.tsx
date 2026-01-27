@@ -1,8 +1,14 @@
-export default function AvokadoLogo({ className = "" }: { className?: string }) {
+export default function AvokadoLogo({
+  className = "",
+  filled = false,
+}: {
+  className?: string;
+  filled?: boolean;
+}) {
   return (
     <svg
       viewBox="0 0 21 24"
-      fill="none"
+      fill={filled ? "currentColor" : "none"}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       stroke="currentColor"
