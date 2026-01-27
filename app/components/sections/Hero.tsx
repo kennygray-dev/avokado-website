@@ -52,42 +52,16 @@ export default function Hero() {
             letterSpacing: "0%",
             overflow: "visible",
           }}
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           {/* "AVO" on top line always */}
-          {"AVO".split("").map((letter, i) => (
-            <motion.span
-              key={`avo-${i}`}
-              variants={{
-                hidden: { y: 50, opacity: 0 },
-                visible: { y: 0, opacity: 1 },
-              }}
-              style={{ display: "inline-block" }}
-            >
-              {letter}
-            </motion.span>
-          ))}
+          {"AVO"}
           {/* Line break only on mobile */}
           <br className="block md:hidden" />
           {/* "KADO" white on desktop, gray on mobile */}
-          {"KADO".split("").map((letter, i) => (
-            <motion.span
-              key={`kado-${i}`}
-              variants={{
-                hidden: { y: 50, opacity: 0 },
-                visible: { y: 0, opacity: 1 },
-              }}
-              className="text-gray-300 md:text-white"
-              style={{ display: "inline-block" }}
-            >
-              {letter}
-            </motion.span>
-          ))}
+          <span className="text-gray-300 md:text-white">KADO</span>
         </motion.h1>
       </div>
     </section>
