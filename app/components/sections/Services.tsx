@@ -13,7 +13,7 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="w-full overflow-hidden py-10">
+    <div className="w-full overflow-hidden py-16 sm:py-20">
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-100%"] }} // Moves from right to left
@@ -28,10 +28,10 @@ export default function Services() {
           {services.map((service, index) => (
             <div key={`set1-${index}`} className="flex items-center px-6 sm:px-16">
               <AvokadoLogo 
-                className="w-8 h-8 sm:w-12 sm:h-12 mx-2 sm:mx-6" 
+                className="w-6 h-6 sm:w-10 sm:h-10 mx-2 sm:mx-6" 
                 filled={index === 0} // First logo (before "Branding") is filled
               />
-              <span className="font-aonik text-lg sm:text-2xl text-[#8D8D8D] whitespace-nowrap mx-2 sm:mx-6">
+              <span className="font-aonik text-base sm:text-xl text-[#8D8D8D] whitespace-nowrap mx-2 sm:mx-6">
                 {service}
               </span>
             </div>
@@ -43,10 +43,10 @@ export default function Services() {
           {services.map((service, index) => (
             <div key={`set2-${index}`} className="flex items-center px-6 sm:px-16">
               <AvokadoLogo 
-                className="w-8 h-8 sm:w-12 sm:h-12 mx-2 sm:mx-6" 
+                className="w-6 h-6 sm:w-10 sm:h-10 mx-2 sm:mx-6" 
                 filled={false} // Only first instance should be filled
               />
-              <span className="font-aonik text-lg sm:text-2xl text-[#8D8D8D] whitespace-nowrap mx-2 sm:mx-6">
+              <span className="font-aonik text-base sm:text-xl text-[#8D8D8D] whitespace-nowrap mx-2 sm:mx-6">
                 {service}
               </span>
             </div>
