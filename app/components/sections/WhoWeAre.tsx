@@ -7,7 +7,7 @@ export default function WhoWeAre() {
   const lines = Array.from({ length: numLines });
 
   return (
-    <section className="w-full h-[85vh] relative flex flex-col items-center justify-center">
+    <section className="w-full min-h-screen relative flex flex-col items-center justify-center">
       {/* Vertical lines spanning full viewport height */}
       {lines.map((_, i) => (
         <div
