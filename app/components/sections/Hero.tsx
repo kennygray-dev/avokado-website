@@ -22,10 +22,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-full overflow-hidden px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-[1400px] overflow-hidden px-4">
         {/* Subtitle above AVOKADO */}
         <p
-          className="text-center text-white mb-12 max-w-full"
+          className="text-center text-white mb-6 max-w-full"
           style={{
             fontFamily: "'Neue Montreal', sans-serif",
             fontWeight: 400,
@@ -40,24 +40,12 @@ export default function Hero() {
           We help it show up everywhere it matters.
         </p>
 
-        {/* Animated AVOKADO Text */}
-        <motion.h1
-          className="mt-40 text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)] flex justify-center text-center whitespace-nowrap"
-          style={{
-            fontFamily: "'Neue Montreal', sans-serif",
-            fontWeight: 800,
-            fontStyle: "bold",
-            fontSize: "clamp(60px, 18vw, 700px)", // smaller minimum for mobile, still large on big screens
-            lineHeight: "1",
-            letterSpacing: "-2px",
-            overflow: "visible",
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+        {/* AVOKADO Text */}
+        <h1
+          className="mt-20 font-neueMontreal font-bold select-none w-full text-center text-white text-[3rem] sm:text-[7rem] md:text-[9rem] lg:text-[17rem]"
         >
           AVOKADO
-        </motion.h1>
+        </h1>
       </div>
     </section>
   );

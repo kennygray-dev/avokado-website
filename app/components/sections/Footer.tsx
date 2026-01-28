@@ -1,51 +1,53 @@
 import AvokadoHomeLogo from '../../../public/icons/AvokadoHomeLogo';
-import { CameraIcon, XMarkIcon, BuildingOfficeIcon } from '@heroicons/react/24/solid';
+import InstagramIcon from '../../../public/icons/Instagram';
+import TwitterIcon from '../../../public/icons/Twitter';
+import LinkedinIcon from '../../../public/icons/Linkedin';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full px-4 sm:px-8 md:px-16 py-8 sm:py-12 bg-[var(--background)] text-white">
+    <footer className="relative w-full px-4 sm:px-8 md:px-16 py-8 sm:py-12 bg-[var(--background)] text-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto w-full">
-        <div className="relative z-10 flex flex-col space-y-6 sm:flex-row sm:justify-between sm:items-start sm:space-y-0">
+        <div className="relative z-10 flex flex-col space-y-24 sm:flex-row sm:justify-between sm:items-start sm:space-y-0">
           <div className="flex flex-col items-start text-left sm:items-start sm:text-left font-neueMontreal">
             <AvokadoHomeLogo />
-            <p className="mt-2 font-normal text-[16px] sm:text-[18px] md:text-[20px] leading-[100%] tracking-[0%] text-[#8D8D8D] whitespace-nowrap break-words">
+            <p className="mt-2 font-light text-[12px] sm:text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-[#8D8D8D] whitespace-nowrap break-words">
               Creating at the frequency of thought
             </p>
           </div>
           <div className="flex flex-col space-y-6 sm:flex-row sm:space-y-0 sm:space-x-16 font-neueMontreal text-left sm:text-left">
             <div>
-              <h3 className="text-[#8D8D8D] uppercase mb-2 text-[16px] sm:text-[20px] md:text-[22px]">NAVIGATE</h3>
-              <ul className="space-y-1">
+              <h3 className="text-[#8D8D8D] uppercase mb-2 text-sm sm:text-[14px] md:text-[16px] font-light">NAVIGATE</h3>
+              <ul className="space-y-3">
                 <li className="text-[14px] sm:text-[16px] md:text-[16px]">
-                  <a href="#" className="text-white font-neueMontreal">About Avokado</a>
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">About Avokado</a>
                 </li>
                 <li className="text-[14px] sm:text-[16px] md:text-[16px]">
-                  <a href="#" className="text-white font-neueMontreal">Company Profile</a>
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">Company Profile</a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-[#8D8D8D] uppercase mb-2 text-[16px] sm:text-[20px] md:text-[22px]">SOCIAL MEDIA</h3>
-              <ul className="space-y-1">
+              <h3 className="text-[#8D8D8D] uppercase mb-2 text-sm sm:text-[14px] md:text-[16px] font-light">SOCIAL MEDIA</h3>
+              <ul className="space-y-3">
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <CameraIcon className="w-4 h-4 text-gray-500" />
-                  <a href="#" className="text-white font-neueMontreal">Instagram</a>
+                  <InstagramIcon className="w-4 h-4 text-gray-500" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">Instagram</a>
                 </li>
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <XMarkIcon className="w-4 h-4 text-gray-500" />
-                  <a href="#" className="text-white font-neueMontreal">X (Formerlly Twitter)</a>
+                  <TwitterIcon className="w-4 h-4 text-gray-500" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">X (Formerlly Twitter)</a>
                 </li>
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <BuildingOfficeIcon className="w-4 h-4 text-gray-500" />
-                  <a href="#" className="text-white font-neueMontreal">LinkedIn</a>
+                  <LinkedinIcon className="w-4 h-4 text-gray-500" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">LinkedIn</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="pointer-events-none flex justify-center w-full mt-8">
+        <div className="pointer-events-none flex justify-center w-full mt-32">
           <h1
-            className="font-neueMontreal font-bold text-[4rem] sm:text-[12rem] md:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
+            className="font-neueMontreal font-bold text-[4rem] sm:text-[7rem] md:text-[8rem] lg:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
             style={{
               userSelect: 'none',
               zIndex: 0,
