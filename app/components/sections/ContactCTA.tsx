@@ -70,7 +70,7 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           {/* Overlay content centered */}
           <div className="relative w-full min-h-screen flex items-center justify-center py-24">
             <motion.div
-              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-4 sm:gap-6 max-w-full mx-auto"
+              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-4 sm:gap-6 max-w-[1400px] mx-auto"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.1 }}

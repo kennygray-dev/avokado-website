@@ -6,8 +6,11 @@ import LinkedinIcon from '../../../public/icons/Linkedin';
 export default function Footer() {
   return (
     <footer className="relative w-full px-4 sm:px-8 md:px-16 py-8 sm:py-12 bg-[var(--background)] text-white overflow-hidden">
+      {/* Gradient overlay that encroaches from bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[var(--background)] via-[var(--background)/80] to-transparent pointer-events-none z-10"></div>
+      
       <div className="max-w-[1400px] mx-auto w-full">
-        <div className="relative z-10 flex flex-col space-y-24 sm:flex-row sm:justify-between sm:items-start sm:space-y-0">
+        <div className="relative z-20 flex flex-col space-y-24 sm:flex-row sm:justify-between sm:items-start sm:space-y-0">
           <div className="flex flex-col items-start text-left sm:items-start sm:text-left font-neueMontreal">
             <AvokadoHomeLogo />
             <p className="mt-2 font-light text-[12px] sm:text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-[#8D8D8D] whitespace-nowrap break-words">
@@ -30,27 +33,26 @@ export default function Footer() {
               <h3 className="text-[#8D8D8D] uppercase mb-2 text-sm sm:text-[14px] md:text-[16px] font-light">SOCIAL MEDIA</h3>
               <ul className="space-y-3">
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <InstagramIcon className="w-4 h-4 text-gray-500" />
+                  <InstagramIcon className="w-6 h-6 text-[#F8FFFD]" />
                   <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">Instagram</a>
                 </li>
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <TwitterIcon className="w-4 h-4 text-gray-500" />
+                  <TwitterIcon className="w-6 h-6 text-[#F8FFFD]" />
                   <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">X (Formerlly Twitter)</a>
                 </li>
                 <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <LinkedinIcon className="w-4 h-4 text-gray-500" />
+                  <LinkedinIcon className="w-6 h-6 text-[#F8FFFD]" />
                   <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">LinkedIn</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="pointer-events-none flex justify-center w-full mt-32">
+        <div className="pointer-events-none flex justify-center w-full mt-32 relative z-0">
           <h1
-            className="font-neueMontreal font-bold text-[4rem] sm:text-[7rem] md:text-[8rem] lg:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
+            className="font-neueMontreal font-bold text-[3rem] sm:text-[7rem] md:text-[10rem] lg:text-[13rem] xl:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
             style={{
               userSelect: 'none',
-              zIndex: 0,
               lineHeight: 1,
             }}
           >

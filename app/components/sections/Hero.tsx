@@ -42,7 +42,7 @@ export default function Hero() {
 
         {/* AVOKADO Text */}
         <h1
-          className="mt-20 font-neueMontreal font-bold select-none w-full text-center text-white text-[3rem] sm:text-[7rem] md:text-[9rem] lg:text-[17rem]"
+          className="mt-20 font-neueMontreal font-bold select-none w-full text-center text-white text-[3rem] sm:text-[7rem] md:text-[12rem] lg:text-[14rem] xl:text-[17rem]"
         >
           AVOKADO
         </h1>

@@ -2,6 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import InstagramIcon from "@/public/icons/Instagram";
+import TwitterIcon from "@/public/icons/Twitter";
+import LinkedinIcon from "@/public/icons/Linkedin";
 
 interface HamburgerMenuModalProps {
   isOpen: boolean;
@@ -10,6 +14,22 @@ interface HamburgerMenuModalProps {
 
 export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuModalProps) {
   const pathname = usePathname();
+  const currentYear = new Date().getFullYear();
+
+  const menuItems = [
+    { label: "Home", href: "/", show: true },
+    { label: "Our Services", href: "#services", show: true },
+    { label: "About Us", href: "/about", show: pathname !== "/about" },
+    { label: "Projects", href: "#projects", show: true },
+    { label: "Why Avokado", href: "#why-us", show: true },
+    { label: "Contact", href: "#contact", show: true },
+  ];
+
+  const socialLinks = [
+    { label: "Instagram", href: "#", icon: InstagramIcon },
+    { label: "X (Twitter)", href: "#", icon: TwitterIcon },
+    { label: "LinkedIn", href: "#", icon: LinkedinIcon },
+  ];
 
   return (
     <AnimatePresence>
@@ -18,89 +38,126 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
           {/* Backdrop */}
           <motion.div
             onClick={onClose}
-            className="fixed inset-0 z-[50] bg-white/30 backdrop-blur-3xl"
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           />
 
+          {/* Menu Panel */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 60 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 60 }}
-            transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.6 }}
-            className="fixed bottom-4 right-4 z-[60] w-full h-[80vh] sm:w-[60vw] sm:h-[85vh] rounded-3xl bg-white/60 backdrop-blur-3xl border border-white/20 shadow-xl p-4 sm:p-8 flex flex-col"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 200, 
+              damping: 25,
+              mass: 0.8 
+            }}
+            className="fixed top-0 right-0 bottom-0 z-[101] w-full sm:w-[480px] bg-gradient-to-b from-[#111111] to-[#191919] border-l border-white/10 shadow-2xl overflow-hidden"
           >
-            {/* Close button */}
-            <motion.button
-              onClick={onClose}
-              aria-label="Close menu"
-              className="absolute top-6 right-6 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full border border-white/30 text-4xl sm:text-6xl font-thin transition"
-              whileHover={{ scale: 1.1, rotate: 15 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              ×
-            </motion.button>
-
-            {/* Scrollable Menu Links Container */}
-            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent smooth-scroll">
-              <motion.div
-                className="mt-12 flex flex-col gap-6 sm:gap-10 font-light text-black"
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.07,
-                      delayChildren: 0.08,
-                    },
-                  },
-                  hidden: {},
-                }}
-              >
-                {/* Our Services */}
-                <motion.span
-                  className="relative text-4xl sm:text-8xl cursor-pointer font-light"
-                  variants={{
-                    hidden: { opacity: 0, y: 40 },
-                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
-                  }}
+            {/* Gradient Accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8FB850] via-[#6A994E] to-transparent" />
+            
+            {/* Header */}
+            <div className="relative p-8 border-b border-white/10">
+              <div className="flex items-center justify-between">
+                <div className="text-white font-neueMontreal text-2xl font-light tracking-wide">
+                  Menu
+                </div>
+                <motion.button
+                  onClick={onClose}
+                  aria-label="Close menu"
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  Our Services.
-                </motion.span>
+                  <XMarkIcon className="w-6 h-6 text-white" />
+                </motion.button>
+              </div>
+              <p className="text-white/40 font-neueMontreal text-sm mt-2">
+                Navigation
+              </p>
+            </div>
 
-                {/* Other links */}
-                {pathname !== "/about" && (
+            {/* Menu Links */}
+            <div className="p-8 overflow-y-auto h-[calc(100vh-200px)]">
+              <div className="space-y-1">
+                {menuItems.filter(item => item.show).map((item, index) => (
                   <motion.a
-                    href="/about"
+                    key={item.label}
+                    href={item.href}
                     onClick={onClose}
-                    className="relative text-4xl sm:text-8xl cursor-pointer font-light"
-                    variants={{
-                      hidden: { opacity: 0, y: 40 },
-                      visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
+                    className="block group"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      delay: 0.05 * index,
+                      duration: 0.3,
+                      ease: "easeOut" 
                     }}
                   >
-                    About Us.
+                    <div className="py-6 border-b border-white/5 group-hover:border-white/20 transition-all duration-300">
+                      <div className="flex items-center justify-between">
+                        <span className="font-neueMontreal text-3xl sm:text-4xl text-white group-hover:text-[#8FB850] transition-colors duration-300 font-light">
+                          {item.label}
+                        </span>
+                        <motion.div
+                          className="opacity-0 group-hover:opacity-100"
+                          initial={{ x: -10 }}
+                          whileHover={{ x: 0 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <div className="w-2 h-2 rounded-full bg-[#8FB850]" />
+                        </motion.div>
+                      </div>
+                      <div className="mt-2 pl-1">
+                        <span className="font-neueMontreal text-sm text-white/30 group-hover:text-white/60 transition-colors duration-300">
+                          {item.href.startsWith("#") ? "Scroll to section" : "Navigate to page"}
+                        </span>
+                      </div>
+                    </div>
                   </motion.a>
-                )}
-                <motion.a
-                  href="/#contact"
-                  onClick={onClose}
-                  className="relative text-4xl sm:text-8xl cursor-pointer font-light"
-                  variants={{
-                    hidden: { opacity: 0, y: 40 },
-                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 150, damping: 22, mass: 0.6 } },
-                  }}
-                >
-                  Contact.
-                </motion.a>
-              </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Footer */}
-            <div className="mt-auto text-sm opacity-50 text-black">© Avokado</div>
+            <div className="absolute bottom-0 left-0 right-0 p-8 border-t border-white/10 bg-gradient-to-t from-black/40 to-transparent">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="text-center sm:text-left">
+                  <div className="font-neueMontreal text-white text-sm font-light">
+                    © {currentYear} Avokado
+                  </div>
+                  <div className="font-neueMontreal text-white/40 text-xs mt-1">
+                    Creating at the frequency of thought
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4">
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={social.label}
+                        href={social.href}
+                        aria-label={social.label}
+                        className="p-2 hover:bg-white/5 rounded-full transition-all duration-200"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 * index }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Icon className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-200" />
+                      </motion.a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </motion.div>
         </>
       )}
