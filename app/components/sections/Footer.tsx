@@ -10,50 +10,68 @@ export default function Footer() {
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[var(--background)] via-[var(--background)/80] to-transparent pointer-events-none z-10"></div>
       
       <div className="max-w-[1400px] mx-auto w-full">
-        <div className="relative z-20 flex flex-col space-y-24 sm:flex-row sm:justify-between sm:items-start sm:space-y-0">
-          <div className="flex flex-col items-start text-left sm:items-start sm:text-left font-neueMontreal">
+        <div className="relative z-20 flex flex-col space-y-12 sm:space-y-0 sm:flex-row sm:justify-between sm:items-start">
+          {/* Logo and tagline */}
+          <div className="flex flex-col items-start text-left font-neueMontreal mb-8 sm:mb-0">
             <AvokadoHomeLogo />
-            <p className="mt-2 font-light text-[12px] sm:text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-[#8D8D8D] whitespace-nowrap break-words">
+            <p className="mt-3 font-light text-[13px] sm:text-[14px] md:text-[16px] leading-[140%] tracking-[0%] text-[#8D8D8D] max-w-xs">
               Creating at the frequency of thought
             </p>
           </div>
-          <div className="flex flex-col space-y-6 sm:flex-row sm:space-y-0 sm:space-x-16 font-neueMontreal text-left sm:text-left">
-            <div>
-              <h3 className="text-[#8D8D8D] uppercase mb-2 text-sm sm:text-[14px] md:text-[16px] font-light">NAVIGATE</h3>
+          
+          {/* Navigation and Social Media - Better mobile layout */}
+          <div className="flex flex-col space-y-8 sm:flex-row sm:space-y-0 sm:space-x-16 font-neueMontreal">
+            {/* Navigate section */}
+            <div className="w-full sm:w-auto">
+              <h3 className="text-[#8D8D8D] uppercase mb-4 text-[13px] sm:text-[14px] md:text-[16px] font-light">NAVIGATE</h3>
               <ul className="space-y-3">
-                <li className="text-[14px] sm:text-[16px] md:text-[16px]">
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">About Avokado</a>
+                <li className="text-[15px] sm:text-[16px] md:text-[16px]">
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                    About Avokado
+                  </a>
                 </li>
-                <li className="text-[14px] sm:text-[16px] md:text-[16px]">
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">Company Profile</a>
+                <li className="text-[15px] sm:text-[16px] md:text-[16px] mt-3">
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                    Company Profile
+                  </a>
                 </li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-[#8D8D8D] uppercase mb-2 text-sm sm:text-[14px] md:text-[16px] font-light">SOCIAL MEDIA</h3>
+            
+            {/* Social Media section */}
+            <div className="w-full sm:w-auto">
+              <h3 className="text-[#8D8D8D] uppercase mb-4 text-[13px] sm:text-[14px] md:text-[16px] font-light">SOCIAL MEDIA</h3>
               <ul className="space-y-3">
-                <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <InstagramIcon className="w-6 h-6 text-[#F8FFFD]" />
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">Instagram</a>
+                <li className="flex items-center space-x-3 text-[15px] sm:text-[16px] md:text-[16px]">
+                  <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#F8FFFD]" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                    Instagram
+                  </a>
                 </li>
-                <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <TwitterIcon className="w-6 h-6 text-[#F8FFFD]" />
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">X (Formerlly Twitter)</a>
+                <li className="flex items-center space-x-3 text-[15px] sm:text-[16px] md:text-[16px] mt-3">
+                  <TwitterIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#F8FFFD]" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                    X (Formerly Twitter)
+                  </a>
                 </li>
-                <li className="flex items-center space-x-2 text-[14px] sm:text-[16px] md:text-[16px]">
-                  <LinkedinIcon className="w-6 h-6 text-[#F8FFFD]" />
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2">LinkedIn</a>
+                <li className="flex items-center space-x-3 text-[15px] sm:text-[16px] md:text-[16px] mt-3">
+                  <LinkedinIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#F8FFFD]" />
+                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                    LinkedIn
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="pointer-events-none flex justify-center w-full mt-32 relative z-0">
+        
+        {/* AVOKADO Text */}
+        <div className="pointer-events-none flex justify-center w-full mt-20 sm:mt-32 relative z-0">
           <h1
-            className="font-neueMontreal font-bold text-[3rem] sm:text-[7rem] md:text-[10rem] lg:text-[13rem] xl:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
+            className="font-neueMontreal font-bold text-[2.5rem] sm:text-[5rem] md:text-[8rem] lg:text-[11rem] xl:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
             style={{
               userSelect: 'none',
-              lineHeight: 1,
+              lineHeight: 0.9,
             }}
           >
             AVOKADO
