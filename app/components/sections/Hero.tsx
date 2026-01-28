@@ -42,26 +42,21 @@ export default function Hero() {
 
         {/* Animated AVOKADO Text */}
         <motion.h1
-          className="mt-4 text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)] flex flex-wrap justify-center text-center"
+          className="mt-40 text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)] flex justify-center text-center whitespace-nowrap"
           style={{
             fontFamily: "'Neue Montreal', sans-serif",
             fontWeight: 800,
             fontStyle: "bold",
-            fontSize: "clamp(120px, 20vw, 260px)",
-            lineHeight: "100%",
-            letterSpacing: "0%",
+            fontSize: "clamp(60px, 18vw, 700px)", // smaller minimum for mobile, still large on big screens
+            lineHeight: "1",
+            letterSpacing: "-2px",
             overflow: "visible",
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* "AVO" on top line always */}
-          {"AVO"}
-          {/* Line break only on mobile */}
-          <br className="block md:hidden" />
-          {/* "KADO" white on desktop, gray on mobile */}
-          <span className="text-gray-300 md:text-white">KADO</span>
+          AVOKADO
         </motion.h1>
       </div>
     </section>
