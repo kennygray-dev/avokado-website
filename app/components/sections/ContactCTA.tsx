@@ -51,8 +51,8 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
     <div id={id} className="w-full min-h-screen bg-[var(--background)] transition-colors duration-300 overflow-x-hidden relative">
       <main className="w-full h-full relative">
         <div className="transition-all duration-300">
-          {/* Background image with padding and rounded corners */}
-          <div className="absolute inset-0 m-2 sm:m-3 rounded-2xl overflow-hidden">
+          {/* Background image with thin white border around image on mobile */}
+          <div className="absolute inset-0 m-2 sm:m-3 rounded-2xl overflow-hidden border border-white/20 sm:border-0">
             <Image
               src="/images/avokado1.png"
               alt="Avokado Visual"
@@ -68,18 +68,18 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           </div>
 
           {/* Overlay content centered */}
-          <div className="relative w-full min-h-screen flex items-center justify-center py-24">
+          <div className="relative w-full min-h-screen flex items-center justify-center py-16 sm:py-24">
             <motion.div
-              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-2 sm:gap-3 max-w-[1400px] mx-auto"
+              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-3 sm:gap-4 max-w-[1400px] mx-auto w-full"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.1 }}
             >
               {/* All caps small text above main heading */}
-              <motion.p
-                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mb-2"
+              <motion.div
+                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mb-4 sm:mb-6"
                 style={{
-                  fontSize: "clamp(12px, 1vw, 14px)",
+                  fontSize: "clamp(11px, 1.2vw, 14px)",
                   lineHeight: "140%",
                   letterSpacing: "0.15em",
                 }}
@@ -87,29 +87,35 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <span className="font-medium">LET'S CREATE TOGETHER</span>
-              </motion.p>
+                <p className="font-medium">LET'S CREATE TOGETHER</p>
+              </motion.div>
 
               {/* Main heading - ALL CAPS */}
               <motion.h1
-                className="font-neueMontreal font-bold uppercase leading-[100%] tracking-[0.02em] flex justify-center text-white max-w-full break-words"
+                className="font-neueMontreal font-bold uppercase leading-[90%] sm:leading-[100%] text-white w-full break-words px-2 sm:px-0"
                 style={{
-                  fontSize: "clamp(2.5rem, 8vw, 5rem)",
-                  textShadow: "0 0 24px rgba(255, 255, 255, 0.25)",
+                  fontSize: "clamp(2.2rem, 9vw, 5rem)",
+                  textShadow: "0 0 20px rgba(255, 255, 255, 0.2)",
                   mixBlendMode: "difference",
+                  letterSpacing: "0.02em",
                 }}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                WORK WITH AVOKADO
+                <span className="block sm:hidden">
+                  WORK<br />WITH<br />AVOKADO
+                </span>
+                <span className="hidden sm:block">
+                  WORK WITH AVOKADO
+                </span>
               </motion.h1>
 
               {/* All caps small text below main heading */}
-              <motion.p
-                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mt-2 max-w-2xl"
+              <motion.div
+                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mt-4 sm:mt-6 max-w-xl px-2 sm:px-0"
                 style={{
-                  fontSize: "clamp(12px, 1vw, 14px)",
+                  fontSize: "clamp(11px, 1.2vw, 14px)",
                   lineHeight: "160%",
                   letterSpacing: "0.15em",
                 }}
@@ -117,15 +123,27 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
-                YOUR BRAND DESERVES MORE THAN JUST VISIBILITY.<br className="hidden sm:block" />
-                <span className="font-medium">IT DESERVES IMPACT.</span>
-              </motion.p>
+                <div className="hidden sm:block">
+                  <p>YOUR BRAND DESERVES MORE THAN JUST VISIBILITY.</p>
+                  <p className="font-medium mt-1">IT DESERVES IMPACT.</p>
+                </div>
+                <div className="sm:hidden">
+                  <p>YOUR BRAND DESERVES</p>
+                  <p>MORE THAN JUST VISIBILITY.</p>
+                  <p className="font-medium mt-2">IT DESERVES IMPACT.</p>
+                </div>
+              </motion.div>
 
-              <motion.div className="flex flex-wrap gap-3 md:gap-4 mt-6 md:mt-8 items-center justify-center">
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 sm:mt-10 md:mt-12 items-center justify-center w-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
                 {!showProjectForm && (
                   <GreenButton
                     onClick={openProjectForm}
-                    className="h-11 sm:h-12 md:h-14 px-6 sm:px-7 md:px-8 text-sm font-medium whitespace-nowrap rounded-full min-w-[150px] sm:min-w-[160px] flex items-center justify-center"
+                    className="h-12 sm:h-12 md:h-14 px-8 sm:px-7 md:px-8 text-sm font-medium whitespace-nowrap rounded-full min-w-[180px] sm:min-w-[150px] flex items-center justify-center"
                   >
                     START A PROJECT
                   </GreenButton>
@@ -133,7 +151,7 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                 {!showContact && (
                   <button
                     onClick={openContact}
-                    className="h-11 sm:h-12 md:h-14 px-6 sm:px-7 md:px-8 text-sm rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all duration-300 text-white uppercase tracking-[0.05em] min-w-[150px] sm:min-w-[160px] font-medium"
+                    className="h-12 sm:h-12 md:h-14 px-8 sm:px-7 md:px-8 text-sm rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all duration-300 text-white uppercase tracking-[0.05em] min-w-[180px] sm:min-w-[150px] font-medium"
                   >
                     CONTACT US
                   </button>
