@@ -70,42 +70,72 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           {/* Overlay content centered */}
           <div className="relative w-full min-h-screen flex items-center justify-center py-24">
             <motion.div
-              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-4 sm:gap-6 max-w-[1400px] mx-auto"
+              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-2 sm:gap-3 max-w-[1400px] mx-auto"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.1 }}
             >
-              <motion.h1
-                className="font-neueMontreal font-bold text-[40px] sm:text-[52px] md:text-[64px] leading-[100%] tracking-[0%] flex justify-center mix-blend-difference text-white [text-shadow:_0_0_24px_rgb(255_255_255_/_25%)] max-w-full break-words"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                Work with Avokado
-              </motion.h1>
+              {/* All caps small text above main heading */}
               <motion.p
-                className="font-neueMontreal font-normal text-[20px] sm:text-[20px] md:text-[20px] leading-[100%] tracking-[0%] text-center text-white mt-4 sm:px-2"
+                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mb-2"
+                style={{
+                  fontSize: "clamp(12px, 1vw, 14px)",
+                  lineHeight: "140%",
+                  letterSpacing: "0.15em",
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <span className="font-medium">LET'S CREATE TOGETHER</span>
+              </motion.p>
+
+              {/* Main heading - ALL CAPS */}
+              <motion.h1
+                className="font-neueMontreal font-bold uppercase leading-[100%] tracking-[0.02em] flex justify-center text-white max-w-full break-words"
+                style={{
+                  fontSize: "clamp(2.5rem, 8vw, 5rem)",
+                  textShadow: "0 0 24px rgba(255, 255, 255, 0.25)",
+                  mixBlendMode: "difference",
+                }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                Your brand deserves more than just visibility.<br />It deserves impact.
+                WORK WITH AVOKADO
+              </motion.h1>
+
+              {/* All caps small text below main heading */}
+              <motion.p
+                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mt-2 max-w-2xl"
+                style={{
+                  fontSize: "clamp(12px, 1vw, 14px)",
+                  lineHeight: "160%",
+                  letterSpacing: "0.15em",
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              >
+                YOUR BRAND DESERVES MORE THAN JUST VISIBILITY.<br className="hidden sm:block" />
+                <span className="font-medium">IT DESERVES IMPACT.</span>
               </motion.p>
-              <motion.div className="flex flex-wrap gap-3 md:gap-4 mt-2 md:mt-4 items-center justify-center">
+
+              <motion.div className="flex flex-wrap gap-3 md:gap-4 mt-6 md:mt-8 items-center justify-center">
                 {!showProjectForm && (
                   <GreenButton
                     onClick={openProjectForm}
-                    className="h-10 sm:h-12 md:h-16 w-32 sm:w-36 md:w-40 text-xs sm:text-sm md:text-base font-bold whitespace-nowrap"
+                    className="h-11 sm:h-12 md:h-14 px-6 sm:px-7 md:px-8 text-sm font-medium whitespace-nowrap rounded-full min-w-[150px] sm:min-w-[160px] flex items-center justify-center"
                   >
-                    Start a Project
+                    START A PROJECT
                   </GreenButton>
                 )}
                 {!showContact && (
                   <button
                     onClick={openContact}
-                    className="h-10 sm:h-12 px-4 md:px-6 text-xs sm:text-sm md:text-base rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-transform duration-300 text-white"
+                    className="h-11 sm:h-12 md:h-14 px-6 sm:px-7 md:px-8 text-sm rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all duration-300 text-white uppercase tracking-[0.05em] min-w-[150px] sm:min-w-[160px] font-medium"
                   >
-                    Contact Us
+                    CONTACT US
                   </button>
                 )}
               </motion.div>

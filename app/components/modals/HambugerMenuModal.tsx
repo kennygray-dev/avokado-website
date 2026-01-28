@@ -19,10 +19,10 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
   const menuItems = [
     { label: "Home", href: "/", show: true },
     { label: "Our Services", href: "#services", show: true },
+    { label: "Contact", href: "#contact", show: true },
     { label: "About Us", href: "/about", show: pathname !== "/about" },
     { label: "Projects", href: "#projects", show: true },
     { label: "Why Avokado", href: "#why-us", show: true },
-    { label: "Contact", href: "#contact", show: true },
   ];
 
   const socialLinks = [
@@ -144,14 +144,14 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
                         key={social.label}
                         href={social.href}
                         aria-label={social.label}
-                        className="p-2 hover:bg-white/5 rounded-full transition-all duration-200"
+                        className="p-3 hover:bg-white/5 rounded-full transition-all duration-200"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 * index }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <Icon className="w-5 h-5 text-white/70 hover:text-white transition-colors duration-200" />
+                        <Icon className="w-6 h-6 text-white/70 hover:text-white transition-colors duration-200" />
                       </motion.a>
                     );
                   })}
