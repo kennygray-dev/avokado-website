@@ -31,8 +31,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="w-full p-[1px] bg-gradient-to-r from-[#393939] via-[#B2B2B2] to-[#282828] rounded-3xl cursor-pointer"
-          onClick={() => router.push(`/projects/${project.id}`)}
+          className="w-full p-[1px] bg-gradient-to-r from-[#393939] via-[#B2B2B2] to-[#282828] rounded-3xl"
         >
           <div className="bg-[#191919] rounded-3xl p-8 flex flex-col md:flex-row gap-10">
 
@@ -76,11 +75,12 @@ export default function Projects() {
               </div>
 
               <div className="flex justify-end mt-4">
-                <a href={project.link || "#"} target="_blank" rel="noopener noreferrer">
-                  <GreenButton className="px-6 py-2 text-sm font-medium">
-                    {project.linkLabel}
-                  </GreenButton>
-                </a>
+                <GreenButton
+                  className="px-6 py-2 text-sm font-medium cursor-pointer"
+                  onClick={() => router.push(`/projects/${project.id}`)}
+                >
+                  {project.linkLabel}
+                </GreenButton>
               </div>
             </div>
 
