@@ -61,10 +61,9 @@ export default function WhyUs() {
         </div>
 
         {/* Trust text at bottom right */}
-        <div className="max-w-sm md:max-w-md text-right z-10 absolute bottom-16 right-6 sm:right-12">
+        <div className="max-w-sm md:max-w-md text-left z-10 absolute bottom-16 right-6 sm:right-12">
           <p className="text-white/70 font-neueMontreal font-light text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] tracking-[0%]">
-            That's why brands trust Avokado—not just to create, <br />
-            but to guide, build, and evolve their digital presence.
+            That's why brands trust Avokado, not just to create, but to guide, build, and evolve their digital presence.
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   const text = "AVOKADO";
   return (
-    <section className="w-full relative flex items-center justify-center overflow-visible p-[300px] sm:p-[500px] rounded-2xl min-h-full">
+    <section className="w-full relative flex items-center justify-center overflow-visible p-[150px] sm:p-[400px] rounded-2xl min-h-full">
       {/* Background Image */}
       <Image
         src="/images/hero.png"

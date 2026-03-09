@@ -13,7 +13,9 @@ export default function Footer() {
         <div className="relative z-20 flex flex-col space-y-12 sm:space-y-0 sm:flex-row sm:justify-between sm:items-start">
           {/* Logo and tagline */}
           <div className="flex flex-col items-start text-left font-neueMontreal mb-8 sm:mb-0">
-            <AvokadoHomeLogo />
+            <a href="/">
+              <AvokadoHomeLogo />
+            </a>
             <p className="mt-3 font-light text-[13px] sm:text-[14px] md:text-[16px] leading-[140%] tracking-[0%] text-[#8D8D8D] max-w-xs">
               Creating at the frequency of thought
             </p>
@@ -44,13 +46,13 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li className="flex items-center space-x-3 text-[15px] sm:text-[16px] md:text-[16px]">
                   <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#F8FFFD]" />
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                  <a href="https://www.instagram.com/avokado_ng/" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                     Instagram
                   </a>
                 </li>
                 <li className="flex items-center space-x-3 text-[15px] sm:text-[16px] md:text-[16px] mt-3">
                   <TwitterIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#F8FFFD]" />
-                  <a href="#" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200">
+                  <a href="https://x.com/avokado_ng/" className="text-white font-neueMontreal underline decoration-dotted underline-offset-2 hover:text-white/80 transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                     X (Formerly Twitter)
                   </a>
                 </li>

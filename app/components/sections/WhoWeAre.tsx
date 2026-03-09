@@ -4,11 +4,11 @@ import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
 
 export default function WhoWeAre() {
-  const numLines = 5; // number of vertical lines
+  const numLines = 9; // updated number of lines
   const lines = Array.from({ length: numLines });
 
   return (
-    <section className="w-full min-h-screen relative flex flex-col items-center justify-center">
+    <section className="w-full min-h-[600px] relative flex flex-col items-center justify-center">
       {/* Vertical lines spanning full viewport height */}
       {lines.map((_, i) => (
         <motion.div
@@ -22,7 +22,7 @@ export default function WhoWeAre() {
         >
           <div
             className={`h-full bg-gradient-to-b from-transparent to-transparent ${
-              i === Math.floor(numLines / 2) ? "via-gray-400/30" : "via-gray-400/40"
+              i === Math.floor(numLines / 2) ? "via-gray-400/10" : "via-gray-400/15"
             }`}
           />
         </motion.div>
@@ -49,7 +49,7 @@ export default function WhoWeAre() {
         >
           <div
             className={`w-px h-[70%] bg-gradient-to-b from-transparent to-transparent ${
-              i === Math.floor(numLines / 2) ? "via-gray-400/30" : "via-gray-400/40"
+              i === Math.floor(numLines / 2) ? "via-gray-400/10" : "via-gray-400/15"
             }`}
           />
         </motion.div>

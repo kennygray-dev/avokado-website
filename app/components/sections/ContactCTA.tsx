@@ -68,31 +68,17 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           </div>
 
           {/* Overlay content centered */}
-          <div className="relative w-full flex items-center justify-center py-20 sm:py-32">
+          <div className="relative w-full flex items-center justify-center py-32 sm:py-48">
             <motion.div
               className="relative z-10 flex flex-col items-center justify-center text-center px-6 sm:px-12 md:px-20 gap-6 sm:gap-8 max-w-[1400px] mx-auto w-full"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.1 }}
             >
-              {/* All caps small text above main heading */}
-              <motion.div
-                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mb-4 sm:mb-6"
-                style={{
-                  fontSize: "clamp(11px, 1.2vw, 14px)",
-                  lineHeight: "140%",
-                  letterSpacing: "0.15em",
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                <p className="font-medium">LET'S CREATE TOGETHER</p>
-              </motion.div>
 
               {/* Main heading - ALL CAPS */}
               <motion.h1
-                className="font-neueMontreal font-bold uppercase leading-[90%] sm:leading-[100%] text-white w-full break-words px-2 sm:px-0 mb-6 sm:mb-8"
+                className="font-neueMontreal font-bold leading-[90%] sm:leading-[100%] text-white w-full break-words px-2 sm:px-0 mb-6 sm:mb-8"
                 style={{
                   fontSize: "clamp(2.5rem, 10vw, 6rem)",
                   textShadow: "0 0 20px rgba(255, 255, 255, 0.2)",
@@ -104,33 +90,32 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <span className="block sm:hidden" style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}>
-                  WORK<br />WITH<br />AVOKADO
+                  Work<br />with<br />Avokado
                 </span>
                 <span className="hidden sm:block" style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}>
-                  WORK WITH AVOKADO
+                  Work with Avokado
                 </span>
               </motion.h1>
 
-              {/* All caps small text below main heading */}
+              {/* Small text below main heading, normal capitalization with tracking */}
               <motion.div
-                className="uppercase tracking-[0.15em] font-neueMontreal text-white/90 text-center mt-4 sm:mt-6 max-w-xl px-2 sm:px-0"
+                className="font-neueMontreal text-white/90 text-center mt-4 sm:mt-6 max-w-xl px-2 sm:px-0 tracking-wider"
                 style={{
                   fontSize: "clamp(11px, 1.2vw, 14px)",
                   lineHeight: "160%",
-                  letterSpacing: "0.15em",
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
                 <div className="hidden sm:block">
-                  <p>YOUR BRAND DESERVES MORE THAN JUST VISIBILITY.</p>
-                  <p className="font-medium mt-1">IT DESERVES IMPACT.</p>
+                  <p>Your brand deserves more than just visibility.</p>
+                  <p className="font-medium mt-1">It deserves impact.</p>
                 </div>
                 <div className="sm:hidden">
-                  <p>YOUR BRAND DESERVES</p>
-                  <p>MORE THAN JUST VISIBILITY.</p>
-                  <p className="font-medium mt-2">IT DESERVES IMPACT.</p>
+                  <p>Your brand deserves</p>
+                  <p>more than just visibility.</p>
+                  <p className="font-medium mt-2">It deserves impact.</p>
                 </div>
               </motion.div>
 
@@ -145,15 +130,15 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                     onClick={openProjectForm}
                     className="h-12 sm:h-12 md:h-14 px-8 sm:px-7 md:px-8 text-sm font-medium whitespace-nowrap rounded-full min-w-[180px] sm:min-w-[150px] flex items-center justify-center"
                   >
-                    START A PROJECT
+                    Start a Project
                   </GreenButton>
                 )}
                 {!showContact && (
                   <button
                     onClick={openContact}
-                    className="h-12 sm:h-12 md:h-14 px-8 sm:px-7 md:px-8 text-sm rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all duration-300 text-white uppercase tracking-[0.05em] min-w-[180px] sm:min-w-[150px] font-medium"
+                    className="h-12 sm:h-12 md:h-14 px-8 sm:px-7 md:px-8 text-sm rounded-full border border-white/50 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition-all duration-300 text-white tracking-[0.05em] min-w-[180px] sm:min-w-[150px] font-medium"
                   >
-                    CONTACT US
+                    Contact Us
                   </button>
                 )}
               </motion.div>
