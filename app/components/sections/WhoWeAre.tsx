@@ -8,7 +8,13 @@ export default function WhoWeAre() {
   const lines = Array.from({ length: numLines });
 
   return (
-    <section className="w-full min-h-[600px] relative flex flex-col items-center justify-center">
+    <motion.section
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full min-h-[700px] relative flex flex-col items-center justify-center"
+    >
       {/* Vertical lines spanning full viewport height */}
       {lines.map((_, i) => (
         <motion.div
@@ -54,6 +60,6 @@ export default function WhoWeAre() {
           />
         </motion.div>
       ))}
-    </section>
+    </motion.section>
   );
 }

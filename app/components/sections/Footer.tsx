@@ -1,7 +1,9 @@
+"use client";
 import AvokadoHomeLogo from '../../../public/icons/AvokadoHomeLogo';
 import InstagramIcon from '../../../public/icons/Instagram';
 import TwitterIcon from '../../../public/icons/Twitter';
 import LinkedinIcon from '../../../public/icons/Linkedin';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
@@ -69,15 +71,16 @@ export default function Footer() {
         
         {/* AVOKADO Text */}
         <div className="pointer-events-none flex justify-center w-full mt-20 sm:mt-32 relative z-0">
-          <h1
+          <motion.h1
             className="font-neueMontreal font-bold text-[2.5rem] sm:text-[5rem] md:text-[8rem] lg:text-[11rem] xl:text-[17rem] select-none w-full text-center bg-gradient-to-b from-[#F8FFFD33] to-[#11111100] bg-clip-text text-transparent"
-            style={{
-              userSelect: 'none',
-              lineHeight: 0.9,
-            }}
+            style={{ userSelect: 'none', lineHeight: 0.9 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: true }}
           >
             AVOKADO
-          </h1>
+          </motion.h1>
         </div>
       </div>
     </footer>

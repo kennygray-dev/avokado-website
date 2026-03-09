@@ -6,7 +6,13 @@ import { motion } from "framer-motion";
 export default function Hero() {
   const text = "AVOKADO";
   return (
-    <section className="w-full relative flex items-center justify-center overflow-visible p-[150px] sm:p-[400px] rounded-2xl min-h-full">
+    <motion.section
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full relative flex items-center justify-center overflow-visible rounded-2xl min-h-[100vh] sm:min-h-screen"
+    >
       {/* Background Image */}
       <Image
         src="/images/hero.png"
@@ -46,6 +52,6 @@ export default function Hero() {
           ))}
         </motion.h1>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -13,7 +13,13 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="w-full overflow-hidden py-4 sm:py-6 md:py-8">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full overflow-hidden py-4 sm:py-6 md:py-8"
+    >
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-50%"] }} // Only move -50% since we have 2 identical sets
@@ -69,6 +75,6 @@ export default function Services() {
           ))}
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

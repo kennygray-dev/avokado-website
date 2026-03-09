@@ -1,11 +1,22 @@
 "use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { projectHighlights } from "@/app/data/projectHighlights";
 import { GreenButton } from "../ui/Buttons";
+import { useRouter } from 'next/navigation';
 
 export default function Projects() {
+  const router = useRouter();
+
   return (
-    <section className="w-full py-20 px-4 sm:px-8">
+    <motion.section
+      id="projects"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full py-20 px-4 sm:px-8"
+    >
   <div className="max-w-[1400px] mx-auto">
 
     <h2 className="text-[50px] sm:text-[64px] font-bold font-neueMontreal">
@@ -14,9 +25,14 @@ export default function Projects() {
 
     <div className="flex flex-col gap-12 mt-16">
       {projectHighlights.map((project) => (
-        <div
+        <motion.div
           key={project.id}
-          className="w-full p-[1px] bg-gradient-to-r from-[#393939] via-[#B2B2B2] to-[#282828] rounded-3xl"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-full p-[1px] bg-gradient-to-r from-[#393939] via-[#B2B2B2] to-[#282828] rounded-3xl cursor-pointer"
+          onClick={() => router.push(`/projects/${project.id}`)}
         >
           <div className="bg-[#191919] rounded-3xl p-8 flex flex-col md:flex-row gap-10">
 
@@ -69,11 +85,11 @@ export default function Projects() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
 
   </div>
-</section>
+</motion.section>
   );
 }

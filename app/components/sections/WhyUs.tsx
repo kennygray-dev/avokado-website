@@ -1,8 +1,16 @@
 "use client";
 
+import { motion } from 'framer-motion';
+
 export default function WhyUs() {
   return (
-    <section className="w-full bg-[var(--background)] relative overflow-hidden px-6 sm:px-12 py-16 sm:py-28">
+    <motion.section
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full bg-[var(--background)] relative overflow-hidden px-6 sm:px-12 py-16 sm:py-28"
+    >
       <div className="max-w-[1400px] mx-auto w-full relative h-full min-h-[600px] flex flex-col justify-between">
         {/* Header at top left */}
         <div className="max-w-2xl">
@@ -67,6 +75,6 @@ export default function WhyUs() {
           </p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

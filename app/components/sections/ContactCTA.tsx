@@ -48,7 +48,14 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
   };
 
   return (
-    <div id={id} className="w-full bg-[var(--background)] transition-colors duration-300 overflow-x-hidden relative">
+    <motion.section
+      id={id}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="w-full bg-[var(--background)] transition-colors duration-300 overflow-x-hidden relative"
+    >
       <main className="w-full h-full relative">
         <div className="transition-all duration-300">
           {/* Background image with thin white border around image on mobile */}
@@ -158,6 +165,6 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           </div>
         )}
       </main>
-    </div>
+    </motion.section>
   );
 }
