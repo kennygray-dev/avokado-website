@@ -76,8 +76,12 @@ export default function Projects() {
 
               <div className="flex justify-end mt-4">
                 <GreenButton
-                  className="px-6 py-2 text-sm font-medium cursor-pointer"
-                  onClick={() => router.push(`/projects/${project.id}`)}
+                  className={`px-6 py-2 text-sm font-medium ${project.link ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+                  onClick={() => {
+                    if (project.link) {
+                      window.open(project.link, "_blank");
+                    }
+                  }}
                 >
                   {project.linkLabel}
                 </GreenButton>
