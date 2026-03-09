@@ -48,7 +48,7 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
   };
 
   return (
-    <div id={id} className="w-full min-h-screen bg-[var(--background)] transition-colors duration-300 overflow-x-hidden relative">
+    <div id={id} className="w-full bg-[var(--background)] transition-colors duration-300 overflow-x-hidden relative">
       <main className="w-full h-full relative">
         <div className="transition-all duration-300">
           {/* Background image with thin white border around image on mobile */}
@@ -68,9 +68,9 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
           </div>
 
           {/* Overlay content centered */}
-          <div className="relative w-full min-h-screen flex items-center justify-center py-16 sm:py-24">
+          <div className="relative w-full flex items-center justify-center py-20 sm:py-32">
             <motion.div
-              className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 gap-3 sm:gap-4 max-w-[1400px] mx-auto w-full"
+              className="relative z-10 flex flex-col items-center justify-center text-center px-6 sm:px-12 md:px-20 gap-6 sm:gap-8 max-w-[1400px] mx-auto w-full"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.1 }}
@@ -92,9 +92,9 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
 
               {/* Main heading - ALL CAPS */}
               <motion.h1
-                className="font-neueMontreal font-bold uppercase leading-[90%] sm:leading-[100%] text-white w-full break-words px-2 sm:px-0"
+                className="font-neueMontreal font-bold uppercase leading-[90%] sm:leading-[100%] text-white w-full break-words px-2 sm:px-0 mb-6 sm:mb-8"
                 style={{
-                  fontSize: "clamp(2.2rem, 9vw, 5rem)",
+                  fontSize: "clamp(2.5rem, 10vw, 6rem)",
                   textShadow: "0 0 20px rgba(255, 255, 255, 0.2)",
                   mixBlendMode: "difference",
                   letterSpacing: "0.02em",
@@ -103,10 +103,10 @@ export default function ContactCTA({ id, openExternally }: ContactCTAProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <span className="block sm:hidden">
+                <span className="block sm:hidden" style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}>
                   WORK<br />WITH<br />AVOKADO
                 </span>
-                <span className="hidden sm:block">
+                <span className="hidden sm:block" style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}>
                   WORK WITH AVOKADO
                 </span>
               </motion.h1>
