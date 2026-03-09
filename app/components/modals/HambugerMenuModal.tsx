@@ -26,8 +26,8 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
   ];
 
   const socialLinks = [
-    { label: "Instagram", href: "#", icon: InstagramIcon },
-    { label: "X (Twitter)", href: "#", icon: TwitterIcon },
+    { label: "Instagram", href: "https://www.instagram.com/avokado_ng/", icon: InstagramIcon },
+    { label: "X (Twitter)", href: "https://x.com/avokado_ng/", icon: TwitterIcon },
     { label: "LinkedIn", href: "#", icon: LinkedinIcon },
   ];
 
@@ -144,6 +144,8 @@ export default function HamburgerMenuModal({ isOpen, onClose }: HamburgerMenuMod
                         key={social.label}
                         href={social.href}
                         aria-label={social.label}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="p-3 hover:bg-white/5 rounded-full transition-all duration-200"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
