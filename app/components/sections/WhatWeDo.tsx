@@ -2,6 +2,9 @@
 
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GreenButton } from "../ui/Buttons";
+import { motion } from "framer-motion";
+
+const sentence = "We’re a digital creative agency that blends strategy, creativity, and execution so brands don’t just exist online, they perform.";
 
 export default function WhatWeDo() {
   return (
@@ -12,9 +15,27 @@ export default function WhatWeDo() {
           Your Creative <span className="text-[#8D8D8D]">Powerhouse</span>
         </h2>
 
-        <p className="text-left max-w-2xl text-gray-400 font-neueMontreal font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[140%] tracking-[0%] break-words mt-8">
-          We’re a digital creative agency that blends strategy, creativity, and execution so brands don’t just exist online, they perform.
-        </p>
+        <motion.p
+          className="text-left max-w-2xl text-gray-400 font-neueMontreal font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[140%] tracking-[0%] break-words mt-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.03
+              }
+            }
+          }}
+        >
+          {sentence.split("").map((char, index) => (
+            <motion.span key={index} variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0 }
+            }}>{char}</motion.span>
+          ))}
+        </motion.p>
         {/* Three connected boxes row */}
         <div className="mt-12 flex w-full max-w-[1400px] mx-auto gap-4">
           {/* Box 1 */}
@@ -43,7 +64,7 @@ export default function WhatWeDo() {
           </div>
         </div>
       </div>
-      <div className="mt-12 w-full flex justify-end">
+      <div className="mt-6 max-w-[1400px] w-full mx-auto flex justify-end">
         <GreenButton
           className="inline-flex items-center gap-2 px-6 py-3"
           onClick={() => {
