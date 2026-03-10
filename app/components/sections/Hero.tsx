@@ -53,21 +53,48 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.div
               key={words[index].main + words[index].sub}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 18,
+                mass: 0.6
+              }}
               className="flex items-center gap-2"
               style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
             >
               <motion.span
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                exit={{ pathLength: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative px-3 py-1 rounded-full border border-[#CEF17B] text-[#CEF17B] font-[cursive]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="relative px-4 py-1 text-[#CEF17B] font-[cursive] inline-flex items-center justify-center"
               >
                 {words[index].main}
+                <svg
+                  className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+12px)] pointer-events-none"
+                  viewBox="0 0 140 50"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M4 26 Q18 4 70 8 T136 24 Q130 46 70 42 T4 26"
+                    stroke="#CEF17B"
+                    strokeWidth="1.2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 28 Q28 10 70 12 T150 26 Q124 40 70 38 T6 28"
+                    stroke="#CEF17B"
+                    strokeWidth="0.9"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.9"
+                  />
+                </svg>
               </motion.span>
               {words[index].sub && (
                 <motion.span

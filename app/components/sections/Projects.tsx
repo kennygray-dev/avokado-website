@@ -66,19 +66,25 @@ export default function Projects() {
               </div>
 
               <div className="w-full md:w-[50%] flex flex-col justify-between">
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden">
+                <div className="relative w-full aspect-[16/10] p-4">
                   {project.imageUrl ? (
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
                       fill
-                      className="object-cover rounded-xl"
+                      className="object-cover rounded-none"
                       priority
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   ) : (
-                    <div className="w-full h-full bg-neutral-800 rounded-xl" />
+                    <div className="w-full h-full bg-neutral-800" />
                   )}
+
+                  {/* Corner accents */}
+                  <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-gray-400 pointer-events-none"></div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-gray-400 pointer-events-none"></div>
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-gray-400 pointer-events-none"></div>
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-gray-400 pointer-events-none"></div>
                 </div>
 
                 <div className="flex justify-end mt-4">

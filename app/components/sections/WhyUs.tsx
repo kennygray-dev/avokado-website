@@ -71,7 +71,7 @@ export default function WhyUs() {
         {/* Trust text below the SVG */}
         <div className="mt-20 max-w-sm md:max-w-md ml-auto text-right">
           <p className="text-white/70 font-[cursive] font-light text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] tracking-[0%]">
-            That's why brands trust Avokado, not just to create, but to guide, build, and evolve their digital presence.
+            That's why brands trust Avokado, not just to create, but to guide, build, and evolve their <span className="text-[#8FB850]">digital presence</span>.
           </p>
         </div>
       </div>
