@@ -68,9 +68,9 @@ export default function WhyUs() {
           </div>
         </div>
 
-        {/* Trust text at bottom right */}
-        <div className="max-w-sm md:max-w-md text-left z-10 absolute bottom-16 right-6 sm:right-12">
-          <p className="text-white/70 font-neueMontreal font-light text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] tracking-[0%]">
+        {/* Trust text below the SVG */}
+        <div className="mt-20 max-w-sm md:max-w-md ml-auto text-right">
+          <p className="text-white/70 font-[cursive] font-light text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] tracking-[0%]">
             That's why brands trust Avokado, not just to create, but to guide, build, and evolve their digital presence.
           </p>
         </div>
