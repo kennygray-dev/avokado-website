@@ -2,68 +2,95 @@
 
 import { motion } from "framer-motion";
 import CloseButton from "../ui/CloseButton";
+import { GreenButton } from "../ui/Buttons";
+import { useEnquiry } from "./useEnquiry";
 
 interface ContactFormProps {
   onClose: () => void;
 }
 
+const FIELD =
+  "w-full rounded-none border border-carbon/20 bg-paper px-5 py-3.5 text-body outline-none transition placeholder:text-muted focus:border-leaf focus:ring-2 focus:ring-leaf/30";
+
 export default function ContactForm({ onClose }: ContactFormProps) {
+  const { status, error, submit } = useEnquiry("contact");
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Contact Avokado"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-ink/60 p-4 backdrop-blur-sm"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative w-full h-full flex items-center justify-center"
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative w-full max-w-lg"
       >
-        <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
-          <div className="relative w-full h-auto bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 shadow-xl flex flex-col gap-4">
-            <CloseButton
-              onClick={onClose}
-              className="absolute -top-12 right-4 sm:-top-16 sm:right-6 w-14 h-14 text-xl font-bold"
-            />
-            <div className="flex flex-col gap-2">
+        <CloseButton
+          onClick={onClose}
+          className="absolute -top-14 right-0 h-12 w-12 text-xl font-bold"
+        />
+
+        <div className="on-light rounded-none bg-paper p-6 shadow-xl sm:p-8">
+          {status === "sent" ? (
+            <div className="py-8 text-center">
+              <h2 className="mb-3 text-2xl font-bold">Message sent.</h2>
+              <p className="text-body">
+                Thanks for reaching out — we&rsquo;ll be in touch shortly.
+              </p>
+              <GreenButton className="mx-auto mt-8" onClick={onClose}>
+                Close
+              </GreenButton>
+            </div>
+          ) : (
+            <form onSubmit={submit} className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold">Get in touch</h2>
+
+              {/* Honeypot — hidden from users, catches naive bots. */}
               <input
                 type="text"
-                placeholder="Name"
-                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:bg-white dark:focus:bg-zinc-800"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute left-[-9999px]"
               />
-            </div>
-            <div className="flex flex-col gap-2">
+
+              <input name="name" required placeholder="Name" className={FIELD} />
               <input
+                name="phone"
                 type="tel"
-                placeholder="Phone Number"
-                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:bg-white dark:focus:bg-zinc-800"
+                placeholder="Phone number"
+                className={FIELD}
               />
-            </div>
-            <div className="flex flex-col gap-2">
               <input
+                name="email"
                 type="email"
+                required
                 placeholder="Email"
-                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:bg-white dark:focus:bg-zinc-800"
+                className={FIELD}
               />
-            </div>
-            <div className="flex flex-col gap-2">
-              <input
-                type="text"
-                placeholder="Subject"
-                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:bg-white dark:focus:bg-zinc-800"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
+              <input name="subject" placeholder="Subject" className={FIELD} />
               <textarea
-                placeholder="Message"
+                name="message"
                 rows={4}
-                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none resize-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:bg-white dark:focus:bg-zinc-800"
+                placeholder="Message"
+                className={`${FIELD} resize-none`}
               />
-            </div>
-            <button
-              type="submit"
-              className="mt-4 rounded-xl bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
-            >
-              Send Message
-            </button>
-          </div>
+
+              {error && (
+                <p role="alert" className="text-sm text-red-600">
+                  {error}
+                </p>
+              )}
+
+              <GreenButton type="submit" disabled={status === "sending"} className="mt-2">
+                {status === "sending" ? "Sending…" : "Send message"}
+              </GreenButton>
+            </form>
+          )}
         </div>
       </motion.div>
     </div>

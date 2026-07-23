@@ -17,7 +17,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({
 }) => (
   <button
     onClick={onClick}
-    className={`rounded-full bg-[#ccf17b] text-black flex items-center justify-center transition hover:scale-105 ${className ?? ""}`}
+    className={`rounded-none bg-lime text-ink flex items-center justify-center transition hover:scale-105 ${className ?? ""}`}
     aria-label={ariaLabel}
   >
     ✕

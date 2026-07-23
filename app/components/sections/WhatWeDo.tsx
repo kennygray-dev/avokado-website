@@ -1,79 +1,83 @@
 "use client";
 
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import { GreenButton } from "../ui/Buttons";
 import { motion } from "framer-motion";
+import Button from "../ui/Button";
 
-const sentence = "We’re a digital creative agency that blends strategy, creativity, and execution so brands don’t just exist online, they perform.";
+const CAPABILITIES = [
+  {
+    title: "Strategy & Direction",
+    body: "Clear brand strategy and creative direction that elevate your presence and sharpen your position in the market.",
+  },
+  {
+    title: "Content & Production",
+    body: "High-quality visuals, video, and copy — photographed, filmed, and written to engage the audience you actually want.",
+  },
+  {
+    title: "Web & Digital",
+    body: "Responsive, intuitive web experiences designed and built to move people from a first look to a real decision.",
+  },
+];
 
 export default function WhatWeDo() {
   return (
-    <section className="w-full flex flex-col items-start justify-start bg-[var(--background)] relative overflow-hidden py-16 px-6 sm:px-12">
-      <div className="max-w-[1400px] mx-auto w-full flex flex-col items-start justify-start">
-
-        <h2 className="text-left text-[70px] sm:text-[88px] md:text-[88px] font-neueMontreal font-bold leading-[110%] tracking-[0%] break-words mt-4">
-          Your Creative <span className="text-[#8D8D8D]">Powerhouse</span>
-        </h2>
-
-        <motion.p
-          className="text-left max-w-2xl text-gray-400 font-neueMontreal font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[140%] tracking-[0%] break-words mt-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.03
-              }
-            }
-          }}
-        >
-          {sentence.split("").map((char, index) => (
-            <motion.span key={index} variants={{
-              hidden: { opacity: 0, y: 10 },
-              visible: { opacity: 1, y: 0 }
-            }}>{char}</motion.span>
-          ))}
-        </motion.p>
-        {/* Three connected boxes row */}
-        <div className="mt-12 flex w-full max-w-[1400px] mx-auto gap-4">
-          {/* Box 1 */}
-          <div className="flex-1 relative text-white p-10 flex flex-col items-start justify-start border-r border-gray-700">
-            <span className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-[#8FB850] text-white font-bold text-sm">01</span>
-            <span className="text-lg font-semibold mb-2">Digital Strategy & Branding Direction</span>
-            <p className="text-gray-400 text-sm">
-              Crafting clear brand strategies and direction to elevate your digital presence and market impact.
-            </p>
-          </div>
-          {/* Box 2 */}
-          <div className="flex-1 relative text-white p-10 flex flex-col items-start justify-start border-r border-gray-700">
-            <span className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-[#8FB850] text-white font-bold text-sm">02</span>
-            <span className="text-lg font-semibold mb-2">Content Creation</span>
-            <p className="text-gray-400 text-sm">
-              Producing high-quality content including visuals, videos, and copy to engage and captivate audiences.
-            </p>
-          </div>
-          {/* Box 3 */}
-          <div className="flex-1 relative text-white p-10 flex flex-col items-start justify-start">
-            <span className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-[#8FB850] text-white font-bold text-sm">03</span>
-            <span className="text-lg font-semibold mb-2">Web Digital Experience</span>
-            <p className="text-gray-400 text-sm">
-              Designing and developing responsive, intuitive web experiences that drive engagement and conversions.
-            </p>
-          </div>
+    <section className="w-full px-6 py-(--spacing-section) sm:px-10 lg:px-14">
+      <div className="mx-auto w-full max-w-[1500px]">
+        {/* metadata frame */}
+        <div className="flex items-start justify-between gap-6 border-b border-line pb-6">
+          <span className="label">Capabilities</span>
+          <span className="label">03</span>
         </div>
-      </div>
-      <div className="mt-6 max-w-[1400px] w-full mx-auto flex justify-end">
-        <GreenButton
-          className="inline-flex items-center gap-2 px-6 py-3"
-          onClick={() => {
-            window.open('https://calendly.com/avokado-ng/', '_blank');
-          }}
-        >
-          Book a free call
-          <ArrowUpRightIcon className="w-4 h-4" />
-        </GreenButton>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-[1fr_0.9fr] md:items-end md:gap-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-[14ch] font-[800]"
+            style={{ fontSize: "var(--text-h1)", lineHeight: 0.94 }}
+          >
+            Your creative <span className="ital font-normal text-leaf">powerhouse.</span>
+          </motion.h2>
+          <p className="max-w-md text-(length:--text-lead) leading-snug text-body">
+            One studio across strategy, design, content and build — so brands don&rsquo;t
+            just exist online, they <span className="ital text-carbon">perform</span>.
+          </p>
+        </div>
+
+        {/* capabilities as an editorial index */}
+        <ul className="mt-16 border-t border-line">
+          {CAPABILITIES.map((item, i) => (
+            <motion.li
+              key={item.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="grid gap-4 border-b border-line py-8 md:grid-cols-[3rem_1fr_1.4fr] md:items-baseline md:gap-8"
+            >
+              <span className="label !text-muted tabular-nums">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3
+                className="font-[800] tracking-[-0.04em] text-carbon"
+                style={{ fontSize: "clamp(1.6rem, 3vw, 2.5rem)" }}
+              >
+                {item.title}
+              </h3>
+              <p className="max-w-md leading-relaxed text-body">{item.body}</p>
+            </motion.li>
+          ))}
+        </ul>
+
+        <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <Button href="/services" variant="link">
+            See all services
+          </Button>
+          <Button href="https://calendly.com/avokado-ng/" tone="dark">
+            Book a free call
+          </Button>
+        </div>
       </div>
     </section>
   );

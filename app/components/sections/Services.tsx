@@ -1,80 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
-import AvokadoLogo from "../../../public/icons/AvokadoLogo";
-
-const services = [
-  "Branding",
-  "Photography",
-  "Videography",
-  "Website",
-  "Social Media",
+const DISCIPLINES = [
+  "Brand Identity",
+  "Visual Production",
+  "Digital Marketing",
+  "Web & Digital",
+  "AI Creative",
 ];
+
+// Two identical passes; the -50% translate loops seamlessly.
+const ROW = [...DISCIPLINES, ...DISCIPLINES];
 
 export default function Services() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="w-full overflow-hidden py-4 sm:py-6 md:py-8"
-    >
-      <motion.div
-        className="flex"
-        animate={{ x: ["0%", "-50%"] }} // Only move -50% since we have 2 identical sets
-        transition={{
-          repeat: Infinity,
-          duration: 30,
-          ease: "linear",
-          repeatType: "loop", // Ensure it loops correctly
+    <section className="w-full py-8 sm:py-10">
+      {/* Centered to the site's max width and faded out at both edges, so the
+          row feeds in and out of nothing rather than hitting the screen edge. */}
+      <div
+        className="mx-auto w-full max-w-[1500px] overflow-hidden px-6 sm:px-10 lg:px-14"
+        style={{
+          maskImage:
+            "linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%)",
         }}
       >
-        {/* First set */}
-        <div className="flex flex-shrink-0">
-          {services.map((service, index) => (
-            <div key={`set1-${index}`} className="flex items-center px-4 sm:px-8 md:px-12 flex-shrink-0">
-              <AvokadoLogo 
-                className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0" 
-                filled={index === 0} // First logo (before "Branding") is filled
-              />
-              <span className="font-aonik text-sm sm:text-lg md:text-xl text-[#8D8D8D] whitespace-nowrap mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0">
-                {service}
+        <div className="flex w-max [animation:avokado-marquee_36s_linear_infinite]">
+          {ROW.map((d, i) => (
+            <div key={i} className="flex flex-shrink-0 items-center gap-8 pr-8 sm:gap-12 sm:pr-12">
+              <span
+                className="font-[600] tracking-[-0.03em] text-carbon"
+                style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+              >
+                {d}
               </span>
+              <span className="h-2 w-2 flex-shrink-0 rounded-full bg-lime" />
             </div>
           ))}
         </div>
-        
-        {/* Duplicate set for seamless loop */}
-        <div className="flex flex-shrink-0">
-          {services.map((service, index) => (
-            <div key={`set2-${index}`} className="flex items-center px-4 sm:px-8 md:px-12 flex-shrink-0">
-              <AvokadoLogo 
-                className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0" 
-                filled={index === 0} // This should also be filled when it's in the first position
-              />
-              <span className="font-aonik text-sm sm:text-lg md:text-xl text-[#8D8D8D] whitespace-nowrap mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0">
-                {service}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Third duplicate set to ensure true seamless loop */}
-        <div className="flex flex-shrink-0">
-          {services.map((service, index) => (
-            <div key={`set3-${index}`} className="flex items-center px-4 sm:px-8 md:px-12 flex-shrink-0">
-              <AvokadoLogo 
-                className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0" 
-                filled={false}
-              />
-              <span className="font-aonik text-sm sm:text-lg md:text-xl text-[#8D8D8D] whitespace-nowrap mx-1.5 sm:mx-4 md:mx-6 flex-shrink-0">
-                {service}
-              </span>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </section>
   );
 }

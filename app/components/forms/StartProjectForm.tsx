@@ -1,216 +1,224 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import CloseButton from "../ui/CloseButton";
+import { GreenButton } from "../ui/Buttons";
+import { useEnquiry } from "./useEnquiry";
 
 interface StartProjectFormProps {
   onClose: () => void;
 }
 
+const SERVICES = [
+  "Web Development",
+  "Web Design",
+  "Photography",
+  "Videography",
+  "Editing",
+  "Branding",
+  "Social Media Management",
+];
+
+const FIELD =
+  "w-full rounded-none border border-carbon/20 bg-paper px-5 py-3.5 text-body outline-none transition placeholder:text-muted focus:border-leaf focus:ring-2 focus:ring-leaf/30";
+
+const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
 export default function StartProjectForm({ onClose }: StartProjectFormProps) {
   const [step, setStep] = useState(0);
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [services, setServices] = useState<string[]>([]);
-  const [showEmail, setShowEmail] = useState(false);
+  const { status, error, submit } = useEnquiry("project");
 
-  const isValidEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const toggleService = (service: string) => {
-    setServices(prev => 
-      prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
+  const toggleService = (service: string) =>
+    setServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service],
     );
-  };
 
-  const formatServices = () => {
-    if (services.length === 1) return services[0];
-    if (services.length === 2) return `${services[0]} and ${services[1]}`;
-    return `${services.slice(0, -1).join(", ")}, and ${services[services.length - 1]}`;
-  };
+  const canAdvance = step === 0 ? name.trim() && isValidEmail(email) : services.length > 0;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Start a project with Avokado"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-ink/60 p-4 backdrop-blur-sm"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative w-full h-full flex items-center justify-center"
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative w-full max-w-lg"
       >
+        <CloseButton
+          onClick={onClose}
+          className="absolute -top-14 right-0 h-12 w-12 text-xl font-bold"
+        />
 
-      {/* Step 0: Name & Email */}
-      {step === 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
-        >
-          {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
-          <div className="flex flex-col gap-2">
-            <label className="text-zinc-700 dark:text-zinc-300 text-sm sm:text-base">What's your name?</label>
-            <div className="flex gap-2 items-center">
+        <div className="on-light rounded-none bg-paper p-6 shadow-xl sm:p-8">
+          {status === "sent" ? (
+            <div className="py-8 text-center">
+              <h2 className="mb-3 text-2xl font-bold">Thanks, {name.split(" ")[0]}.</h2>
+              <p className="text-body">
+                Your project brief is with us. We&rsquo;ll come back to you shortly.
+              </p>
+              <GreenButton className="mx-auto mt-8" onClick={onClose}>
+                Close
+              </GreenButton>
+            </div>
+          ) : (
+            <form onSubmit={submit} className="flex flex-col gap-6">
+              {/* Progress */}
+              <div className="flex gap-2" aria-hidden="true">
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    className={`h-1 flex-1 rounded-none transition-colors ${
+                      i <= step ? "bg-leaf" : "bg-carbon/15"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Values are carried in hidden inputs so the final submit sends
+                  everything gathered across the three steps. */}
+              <input type="hidden" name="name" value={name} />
+              <input type="hidden" name="email" value={email} />
+              <input type="hidden" name="services" value={services.join(", ")} />
               <input
                 type="text"
-                placeholder="Your Name"
-                className="flex-1 rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                onKeyDown={e => e.key === "Enter" && name.trim() && setShowEmail(true)}
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute left-[-9999px]"
               />
-              {!showEmail && (
-                <button
-                  onClick={() => name.trim() && setShowEmail(true)}
-                  className="h-12 w-12 rounded-full bg-[#ccf17b] flex items-center justify-center hover:bg-[#b8e66c] transition"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 12h14" />
-                  </svg>
-                </button>
+
+              <AnimatePresence mode="wait">
+                {step === 0 && (
+                  <motion.div
+                    key="step0"
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    className="flex flex-col gap-4"
+                  >
+                    <h2 className="text-2xl font-bold">Let&rsquo;s start a project</h2>
+                    <label className="flex flex-col gap-2 text-sm text-body">
+                      What&rsquo;s your name?
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your name"
+                        className={FIELD}
+                      />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm text-body">
+                      And your email?
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@company.com"
+                        className={FIELD}
+                      />
+                    </label>
+                  </motion.div>
+                )}
+
+                {step === 1 && (
+                  <motion.div
+                    key="step1"
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    className="flex flex-col gap-4"
+                  >
+                    <h2 className="text-2xl font-bold">
+                      Hi {name.split(" ")[0]}, what do you need?
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                      {SERVICES.map((service) => {
+                        const active = services.includes(service);
+                        return (
+                          <button
+                            key={service}
+                            type="button"
+                            aria-pressed={active}
+                            onClick={() => toggleService(service)}
+                            className={`rounded-none border px-4 py-2 text-sm transition ${
+                              active
+                                ? "border-carbon bg-carbon text-paper"
+                                : "border-carbon/20 text-body hover:border-leaf"
+                            }`}
+                          >
+                            {service}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+
+                {step === 2 && (
+                  <motion.div
+                    key="step2"
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    className="flex flex-col gap-4"
+                  >
+                    <h2 className="text-2xl font-bold">Tell us a little more</h2>
+                    <label className="flex flex-col gap-2 text-sm text-body">
+                      What are you building?
+                      <textarea
+                        name="message"
+                        rows={5}
+                        placeholder="A sentence or two is plenty."
+                        className="w-full resize-none rounded-none border border-carbon/20 bg-paper px-5 py-3.5 text-body outline-none transition placeholder:text-muted focus:border-leaf focus:ring-2 focus:ring-leaf/30"
+                      />
+                    </label>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {error && (
+                <p role="alert" className="text-sm text-red-600">
+                  {error}
+                </p>
               )}
-            </div>
-          </div>
 
-          {showEmail && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-2">
-              <label className="text-zinc-700 dark:text-zinc-300 text-sm sm:text-base">Email</label>
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full rounded-[2rem] border border-zinc-300 dark:border-zinc-700 px-4 sm:px-6 md:px-6 py-3 sm:py-4 md:py-4 outline-none bg-white dark:bg-zinc-900 text-black dark:text-white text-sm sm:text-base"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                onKeyDown={e => e.key === "Enter" && isValidEmail(email) && setStep(1)}
-              />
-              {isValidEmail(email) && (
-                <button
-                  onClick={() => setStep(1)}
-                  className="mt-4 w-full rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
-                >
-                  Next
-                </button>
-              )}
-            </motion.div>
+              <div className="flex items-center justify-between gap-4">
+                {step > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => setStep((s) => s - 1)}
+                    className="text-sm text-muted underline underline-offset-4 hover:text-carbon"
+                  >
+                    Back
+                  </button>
+                ) : (
+                  <span />
+                )}
+
+                {step < 2 ? (
+                  <GreenButton
+                    onClick={() => setStep((s) => s + 1)}
+                    disabled={!canAdvance}
+                  >
+                    Continue
+                  </GreenButton>
+                ) : (
+                  <GreenButton type="submit" disabled={status === "sending"}>
+                    {status === "sending" ? "Sending…" : "Send brief"}
+                  </GreenButton>
+                )}
+              </div>
+            </form>
           )}
-        </motion.div>
-      )}
-
-      {/* Step 1: Services */}
-      {step === 1 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
-        >
-          {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
-          
-          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium text-sm sm:text-base">
-            Hi, {name}, what services would you need?
-          </label>
-          <div className="flex flex-wrap gap-3">
-            {["Web Development", "Web Design", "Photography", "Videography", "Editing", "Branding", "Social Media Management"].map(service => (
-              <motion.button
-                key={service}
-                onClick={() => toggleService(service)}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 sm:py-4 rounded-full border-2 transition-all duration-300 ${
-                  services.includes(service)
-                    ? "bg-[#ccf17b] border-[#ccf17b] shadow-lg"
-                    : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-[#ccf17b]/50"
-                }`}
-              >
-                <span className={`text-sm sm:text-base font-medium transition-colors whitespace-nowrap ${
-                  services.includes(service) 
-                    ? "text-black" 
-                    : "text-zinc-700 dark:text-zinc-200"
-                }`}>
-                  {service}
-                </span>
-              </motion.button>
-            ))}
-          </div>
-          {services.length > 0 && (
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              onClick={() => setStep(2)}
-              className="mt-2 rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
-            >
-              Next
-            </motion.button>
-          )}
-          <button
-            onClick={() => setStep(step - 1)}
-            className="absolute -bottom-6 -left-6 w-12 h-12 sm:w-14 sm:h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        </motion.div>
-      )}
-
-      {/* Step 2: Review */}
-      {step === 2 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white dark:bg-zinc-900 rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col gap-6"
-        >
-          {/* Close Button */}
-          <CloseButton onClick={onClose} className="absolute -top-10 right-4 sm:-top-14 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 text-xl font-bold" />
-          
-
-          <label className="text-zinc-700 dark:text-zinc-300 text-lg font-medium text-sm sm:text-base">
-            Review Your Message
-          </label>
-
-          {/* Message Template */}
-          <div className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 text-zinc-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base">
-            <p className="mb-4">Hi Avokado! 👋</p>
-            <p className="mb-4">
-              My name is <span className="font-semibold text-black dark:text-white cursor-pointer hover:text-[#ccf17b] transition" onClick={() => setStep(0)}>{name}</span> and I would like to work with you on {formatServices()}.
-            </p>
-            <p className="mb-4">
-              I'm excited to discuss how we can bring this project to life together!
-            </p>
-            <p>
-              You can reach me at <span className="font-semibold text-black dark:text-white cursor-pointer hover:text-[#ccf17b] transition" onClick={() => setStep(0)}>{email}</span>.
-            </p>
-            <p className="mt-6">Looking forward to hearing from you!</p>
-            <p className="mt-2">Best regards,<br /><span className="font-semibold">{name}</span></p>
-          </div>
-
-          {/* Info text */}
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center">
-            Click on any <span className="text-[#ccf17b] font-medium">highlighted text</span> to edit
-          </p>
-
-          {/* Submit Button */}
-          <button
-            onClick={() => {
-              console.log({ name, email, services });
-              // Here you would send the data to your backend
-              onClose();
-            }}
-            className="rounded-[2rem] bg-black text-white dark:bg-white dark:text-black py-3 sm:py-4 hover:bg-zinc-800 dark:hover:bg-zinc-700 transition font-semibold text-sm sm:text-base"
-          >
-            Submit
-          </button>
-          <button
-            onClick={() => setStep(step - 1)}
-            className="absolute -bottom-6 -left-6 w-12 h-12 sm:w-14 sm:h-14 bg-[#ccf17b] text-black rounded-full flex items-center justify-center hover:bg-[#b8e66c] transition"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        </motion.div>
-      )}
+        </div>
       </motion.div>
     </div>
   );

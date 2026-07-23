@@ -1,14 +1,137 @@
 @import "tailwindcss";
 
-/* Base colors (CSS variables) for default dark mode */
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+/* ---------------------------------------------------------------------------
+   Avokado — editorial studio design system
+   Tailwind v4 reads this @theme block directly (no tailwind.config.js).
+   Palette is a chosen neutral: paper and ink both carry a faint green bias
+   toward the lime accent, so nothing reads as an off-the-shelf grey.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Grounds */
+  --color-paper: #edeeea;      /* cool gallery off-white */
+  --color-paper-2: #e4e6df;    /* card / recessed */
+  --color-ink: #131512;        /* near-black, green-biased */
+  --color-ink-2: #1d201b;
+
+  /* Ink text on paper */
+  --color-carbon: #131512;
+  --color-body: #4b4e46;
+  --color-muted: #8a8d83;
+  --color-line: #d4d6cf;
+
+  /* Accent — confident lime + its darker leaf for text-on-lime */
+  --color-lime: #cbf24a;
+  --color-leaf: #8fb850;
+  --color-lime-ink: #1a2405;
+
+  /* Type */
+  --font-sans: var(--font-switzer), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-zodiak), Georgia, serif;
+
+  /* Editorial display scale — big, tight, fluid */
+  --text-mega: clamp(3.5rem, 15vw, 15rem);
+  --text-display: clamp(3rem, 9vw, 8.5rem);
+  --text-h1: clamp(2.5rem, 6vw, 5.5rem);
+  --text-h2: clamp(1.9rem, 4vw, 3.5rem);
+  --text-lead: clamp(1.15rem, 1.6vw, 1.6rem);
+
+  --spacing-section: clamp(6rem, 12vw, 12rem);
 }
 
-/* Apply variables to body */
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-carbon);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: 'Neue Montreal', Arial, Helvetica, sans-serif;
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-carbon);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  font-weight: 800;
+}
+
+/* Serif italic accent — the editorial signature. Use `.ital` on a span. */
+.ital {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Uppercase micro-label used across metadata rows. */
+.label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+}
+
+/* Dark surfaces */
+.on-dark {
+  --background: var(--color-ink);
+  background: var(--background);
+  color: color-mix(in srgb, var(--color-paper) 74%, transparent);
+}
+.on-dark h1,
+.on-dark h2,
+.on-dark h3 {
+  color: var(--color-paper);
+}
+.on-light {
+  --background: var(--color-paper);
+  color: var(--color-body);
+}
+.on-light h1,
+.on-light h2,
+.on-light h3 {
+  color: var(--color-carbon);
+}
+
+/* Marquee: two identical passes, -50% translate → seamless loop. */
+@keyframes avokado-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Slow vertical bob for ambient marks. */
+@keyframes avokado-drift {
+  0%, 100% { transform: translateY(-2%); }
+  50% { transform: translateY(2%); }
+}
+
+/* Live-status pulse. */
+@keyframes avokado-breathe {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Word rise for headline reveals. */
+@keyframes avokado-rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

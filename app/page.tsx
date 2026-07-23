@@ -12,9 +12,11 @@ export default function Page() {
     <main className="w-full overflow-x-hidden">
       <Hero />
       <Services />
+      {/* Work leads — the case studies are the proof, so they come before the
+          explanation of how we work. */}
+      <Projects />
       <WhoWeAre />
       <WhatWeDo />
-      <Projects />
       <WhyUs />
       {/* Add id for scrolling */}
       <ContactCTA id="contact" />

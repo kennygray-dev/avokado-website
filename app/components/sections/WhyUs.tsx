@@ -1,80 +1,90 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+
+const REASONS = [
+  {
+    title: "Strategy-led",
+    body: "We start with why, not what. Every visual decision traces back to a business one.",
+  },
+  {
+    title: "Craft under one roof",
+    body: "Brand, photography, film, and build live in the same studio — so nothing gets lost in translation.",
+  },
+  {
+    title: "Culturally fluent",
+    body: "Work that feels local and reads world-class. Rooted in where you are, built for where you're going.",
+  },
+  {
+    title: "Built to perform",
+    body: "We measure creativity by what it moves — reach, trust, and the decisions people actually make.",
+  },
+];
 
 export default function WhyUs() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="w-full bg-[var(--background)] relative overflow-hidden px-6 sm:px-12 py-16 sm:py-28"
-    >
-      <div className="max-w-[1400px] mx-auto w-full relative h-full min-h-[600px] flex flex-col justify-between">
-        {/* Header at top left */}
-        <div className="max-w-2xl">
-          <h2 className="text-left text-[50px] sm:text-[64px] md:text-[80px] font-neueMontreal font-bold leading-[100%] tracking-[0%] break-words">
-            Why <span className="text-[#8D8D8D]">Avokado</span>
-          </h2>
-          <p className="text-left text-gray-400 font-neueMontreal font-normal text-[20px] sm:text-[20px] md:text-[20px] leading-[100%] tracking-[0%] break-words mt-8">
-            We believe creativity should serve a purpose. And digital should feel human.
-          </p>
+    <section className="w-full px-6 py-(--spacing-section) sm:px-10 lg:px-14">
+      <div className="mx-auto w-full max-w-[1500px]">
+        {/* metadata frame */}
+        <div className="flex items-start justify-between gap-6 border-b border-line pb-6">
+          <span className="label">Why Avokado</span>
+          <span className="label">The difference</span>
         </div>
 
-        {/* Multi-color neon logo - centered */}
-        <div className="flex justify-center mt-20 mb-20">
-          <div className="relative w-[35vw] md:w-[25vw] lg:w-[20vw] max-w-[400px]">
-            {/* Glowing container */}
-            <div className="relative rounded-full p-8">
-              {/* Multiple glow layers for neon effect */}
-              <div
-                className="absolute inset-0 rounded-full animate-pulse"
-                style={{
-                  background:
-                    'conic-gradient(from 0deg at 50% 50%, #8FB850, #6A994E, #386641, #8FB850)',
-                  filter: 'blur(20px)',
-                  opacity: 0.4,
-                }}
-              ></div>
+        {/* statement */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mt-14 max-w-[20ch] font-[800]"
+          style={{ fontSize: "var(--text-h1)", lineHeight: 0.96 }}
+        >
+          Creativity should serve a{" "}
+          <span className="ital font-normal text-leaf">purpose.</span> Digital should feel{" "}
+          <span className="ital font-normal text-leaf">human.</span>
+        </motion.h2>
 
-              {/* Logo with CSS gradient fill */}
-              <div className="relative">
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 39 42"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="drop-shadow-[0_0_20px_rgba(143,184,80,0.6)]"
+        {/* reasons as an editorial index */}
+        <ul className="mt-16 grid border-t border-line md:grid-cols-2">
+          {REASONS.map((r, i) => (
+            <motion.li
+              key={r.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: (i % 2) * 0.06 }}
+              className="border-b border-line py-8 md:[&:nth-child(odd)]:border-r md:[&:nth-child(odd)]:pr-12 md:[&:nth-child(even)]:pl-12"
+            >
+              <div className="flex items-baseline gap-4">
+                <span className="label !text-muted tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3
+                  className="font-[800] tracking-[-0.04em] text-carbon"
+                  style={{ fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)" }}
                 >
-                  <path
-                    d="M19.0752 0C29.61 7.98639e-05 38.1504 9.70561 38.1504 21.6777C38.1503 30.9919 32.9802 38.9328 25.7241 42C30.0628 39.7389 33.0078 35.3341 33.0078 30.2704C33.0078 22.9002 26.7696 16.9251 19.0746 16.9251C11.3796 16.9251 5.14137 22.9002 5.14137 30.2704C5.14142 35.332 8.08402 39.7351 12.4198 41.997 5.167 38.9278 9.36231e-05 30.9892 0 21.6777C0 9.70556 8.54032 0 19.0752 0Z"
-                    style={{
-                      fill: 'url(#multi-neon-gradient)',
-                    }}
-                  />
-                  <defs>
-                    <linearGradient id="multi-neon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#8FB850" />
-                      <stop offset="33%" stopColor="#6A994E" />
-                      <stop offset="66%" stopColor="#386641" />
-                      <stop offset="100%" stopColor="#8FB850" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                  {r.title}
+                </h3>
               </div>
-            </div>
-          </div>
-        </div>
+              <p className="mt-3 max-w-md pl-8 leading-relaxed text-body">{r.body}</p>
+            </motion.li>
+          ))}
+        </ul>
 
-        {/* Trust text below the SVG */}
-        <div className="mt-20 max-w-sm md:max-w-md ml-auto text-right">
-          <p className="text-white/70 font-[cursive] font-light text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] tracking-[0%]">
-            That's why brands trust Avokado, not just to create, but to guide, build, and evolve their <span className="text-[#8FB850]">digital presence</span>.
-          </p>
-        </div>
+        {/* mission pull-quote */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16 max-w-4xl text-(length:--text-h2) leading-tight text-carbon"
+        >
+          <span className="ital font-normal text-leaf">To become</span> the most intuitive,
+          innovative, and influential creative studio — shaping how brands tell their
+          stories, one idea at the speed of thought.
+        </motion.p>
       </div>
-    </motion.section>
+    </section>
   );
 }

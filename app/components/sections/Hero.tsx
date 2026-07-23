@@ -1,135 +1,92 @@
 "use client";
 
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import Button from "../ui/Button";
+
+const ROTATING = ["Brand", "Build", "Film", "Grow"];
 
 export default function Hero() {
-  const text = "AVOKADO";
-  const words = [
-    { main: "Create", sub: "with" },
-    { main: "Brand", sub: "with" },
-    { main: "Build", sub: "with" },
-    { main: "Design", sub: "with" },
-    { main: "Grow", sub: "with" },
-  ];
-  const [index, setIndex] = useState(0);
-
+  const [i, setI] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length);
-    }, 3500);
-    return () => clearInterval(interval);
+    const id = setInterval(() => setI((p) => (p + 1) % ROTATING.length), 2600);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="w-full relative flex items-center justify-center overflow-visible rounded-2xl min-h-[100vh] sm:min-h-screen"
-    >
-      {/* Background Image */}
-      <Image
-        src="/images/hero.png"
-        alt="Hero Background"
-        fill
-        className="object-cover w-full h-full"
-        priority
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL="/images/hero-blur.png"
-        style={{ filter: "brightness(0.5) blur(25px)" }}
-      />
-
-      {/* Dimmed Overlay */}
-      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
-
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        {/* AVOKADO Text - Better mobile scaling */}
-        <div className="flex flex-col items-center mb-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={words[index].main + words[index].sub}
-              initial={{ opacity: 0, y: -12, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
-              transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 18,
-                mass: 0.6
-              }}
-              className="flex items-center gap-2"
-              style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative px-4 py-1 text-[#CEF17B] font-[cursive] inline-flex items-center justify-center"
-              >
-                {words[index].main}
-                <svg
-                  className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+12px)] pointer-events-none"
-                  viewBox="0 0 140 50"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M4 26 Q18 4 70 8 T136 24 Q130 46 70 42 T4 26"
-                    stroke="#CEF17B"
-                    strokeWidth="1.2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6 28 Q28 10 70 12 T150 26 Q124 40 70 38 T6 28"
-                    stroke="#CEF17B"
-                    strokeWidth="0.9"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    opacity="0.9"
-                  />
-                </svg>
-              </motion.span>
-              {words[index].sub && (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, delay: 0.5 }}
-                  className="text-white/50"
-                >
-                  {words[index].sub}
-                </motion.span>
-              )}
-            </motion.div>
-          </AnimatePresence>
-          <motion.h1
-            className="font-neueMontreal font-bold select-none w-full text-center text-white overflow-visible break-normal px-2"
-            style={{
-              fontSize: "clamp(3.5rem, 15vw, 17rem)",
-              lineHeight: "0.85",
-            }}
-          >
-            {text.split("").map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.3, ease: "easeOut" }}
-                style={{ display: "inline-block" }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.h1>
+    <section className="relative flex min-h-screen w-full flex-col px-6 pb-10 pt-28 sm:px-10 sm:pt-32 lg:px-14">
+      {/* Centered to the same max width as every other section, so the hero
+          stops stretching edge-to-edge on wide screens. */}
+      <div className="mx-auto flex w-full max-w-[1500px] flex-1 flex-col justify-between">
+      {/* top metadata frame */}
+      <div className="flex items-start justify-between gap-6 border-b border-line pb-6">
+        <div className="label max-w-[16ch] leading-relaxed sm:max-w-none">
+          Avokado&reg; — Creative studio
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime [animation:avokado-breathe_2.4s_ease-in-out_infinite]" />
+          <span className="label !text-carbon">Open for 2026 projects</span>
         </div>
       </div>
-    </motion.section>
+
+      {/* kinetic statement */}
+      <div className="py-12">
+        <motion.h1
+          initial="hide"
+          animate="show"
+          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
+          className="font-[800] text-carbon"
+          style={{ fontSize: "var(--text-display)", lineHeight: 0.9 }}
+        >
+          {["A creative studio", "for brands that"].map((line) => (
+            <span key={line} className="block overflow-hidden">
+              <motion.span
+                className="block"
+                variants={{ hide: { y: "110%" }, show: { y: 0 } }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+          <span className="block overflow-hidden">
+            <motion.span
+              className="flex items-baseline gap-[0.25em]"
+              variants={{ hide: { y: "110%" }, show: { y: 0 } }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              want to
+              <span className="relative inline-block align-baseline">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={ROTATING[i]}
+                    initial={{ y: "60%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: "-60%", opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="ital inline-block text-leaf"
+                    style={{ fontWeight: 500 }}
+                  >
+                    {ROTATING[i]}.
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </motion.span>
+          </span>
+        </motion.h1>
+      </div>
+
+      {/* bottom frame */}
+      <div className="grid gap-8 border-t border-line pt-8 md:grid-cols-[1fr_auto] md:items-end">
+        <p className="max-w-md text-(length:--text-lead) leading-snug text-body">
+          We design, build and grow brands that look sharp, feel human, and{" "}
+          <span className="ital text-carbon">actually perform</span> online.
+        </p>
+        <Button href="/#contact" tone="dark" className="self-start md:justify-self-end">
+          Start a project
+        </Button>
+      </div>
+      </div>
+    </section>
   );
 }
